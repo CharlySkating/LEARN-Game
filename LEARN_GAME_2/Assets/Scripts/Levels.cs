@@ -29,6 +29,8 @@ public class Levels : MonoBehaviour {
 	//public GameObject MainObject;
 	bool mDown =false;
 
+	bool inDrawing =false;
+
 	// Use this for initialization
 	void Awake () {
 		//Debug.Log(player.GetComponent<PlayerMOvement> ().level);
@@ -39,7 +41,7 @@ public class Levels : MonoBehaviour {
 		gameObj1 = new GameObject("Line1");
 			lineList = gameObj1.AddComponent<LineRenderer> ();
 			lineList.SetVertexCount (2);
-			lineList.SetWidth (0.3f, 0.3f);
+			lineList.SetWidth (0.1f, 0.1f);
 
 		gameObj2 = new GameObject("Line2");
 			lineList2 = gameObj2.AddComponent<LineRenderer> ();
@@ -71,7 +73,7 @@ public class Levels : MonoBehaviour {
 			//Debug.Log (drawLine);
 		}
 			
-		if (drawLine & (Control.GetComponent<GlobalOpeningScript>().level ==1) ) {
+		if (drawLine){// & (Control.GetComponent<GlobalOpeningScript>().level ==1) ) {
 			//Debug.Log ("hi we are here level1");
 			//Application.LoadLevel ("level1");
 			drawLevel1 ();
@@ -144,13 +146,33 @@ public class Levels : MonoBehaviour {
 
 	void drawLines(LineRenderer currentLines, int pos1, int pos2){
 		
-		if (Input.GetMouseButtonDown (0) && mDown ==false) {
+		if (Input.GetMouseButtonDown (0) && mDown ==false && inDrawing ==false) {
 				
 					startPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 					startPosition.z = 8;
-					mDown = true;
+					//mDown = true;
+			      inDrawing =true;
+			Debug.Log ("START DRAWING:: " + startPosition);
 
-				}
+			}
+		// new state
+		if (inDrawing ==true) {
+
+			//startPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			//startPosition.z = 8;
+			//mDown = true;
+			//inDrawing =true;
+			endPoint = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			endPoint.z = 8;
+			currentLines.SetPosition (0, startPosition);
+			currentLines.SetPosition (1, endPoint);
+			//PresetLine (currentLines, startPosition, endPoint);
+			Debug.Log ("DRAWING:: " + endPoint);
+			mDown = true;
+
+		}
+
+	
 		if (Input.GetMouseButtonUp (0) && mDown ==true) {
 				
 			   Debug.Log ("x end:: "+endPoint.x);
@@ -158,11 +180,13 @@ public class Levels : MonoBehaviour {
 					endPoint.z = 8;
 					lineDrawn = true;
 					mDown = false;
+			        inDrawing = false;
 				}
 
 			if (lineDrawn) {
 			Debug.Log ("IN HERE");
 				drawLine = false;
+			currentLines.SetColors (Color.red, Color.red);
 				currentLines.SetPosition (0, startPosition);
 				currentLines.SetPosition (1, endPoint);
 
@@ -182,6 +206,7 @@ public class Levels : MonoBehaviour {
 			}
 		if (lineDrawn &(distanceS >0.25 || distanceE > 0.25)) {
 			Debug.Log ("wrong line");
+			currentLines.SetColors (Color.red, Color.red);
 			//draw a new one
 			drawLine = true;
 			lineDrawn = false;
@@ -191,6 +216,7 @@ public class Levels : MonoBehaviour {
 		else if (lineDrawn & (distanceS < 0.25 || distanceE < 0.25)) {
 			
 			drawLine = true;
+
 			//lineDrawn = true;
 			//call function to draw official line
 			PresetLine (currentLines, pos1, pos2);
@@ -202,6 +228,7 @@ public class Levels : MonoBehaviour {
 	void PresetLine(LineRenderer finalLine, int loc1, int loc2) {
 		Debug.Log ("Correct Line");
 		rightAnswer = true;
+		finalLine.SetColors (Color.green, Color.green);
 		finalLine.SetPosition(0,targetElement.GetComponent<bonding> ().possiblePositions [loc1]);
 		finalLine.SetPosition(1,targetElement1.GetComponent<bonding> ().possiblePositions [loc2]);
 		//drawLine = true;

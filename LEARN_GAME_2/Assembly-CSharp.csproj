@@ -49,6 +49,7 @@
      <Compile Include="Assets\CameraFollow.cs" />
      <Compile Include="Assets\ElectronBondsDrag.cs" />
      <Compile Include="Assets\Line_Drawing.cs" />
+     <Compile Include="Assets\PlayerMove.cs" />
      <Compile Include="Assets\Scripts\DisplayElements.cs" />
      <Compile Include="Assets\Scripts\DraggingElectrons.cs" />
      <Compile Include="Assets\Scripts\ElementMoveIndividual.cs" />

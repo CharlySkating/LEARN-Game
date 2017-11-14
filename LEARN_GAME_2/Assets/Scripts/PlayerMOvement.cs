@@ -7,43 +7,27 @@ using UnityEngine;
 
 public class PlayerMOvement : MonoBehaviour {
 
-	public float speed = 20f;
+	//public float speed = 20f;
 	public GameObject Control;
-	/*public int hydrogen = 0;
-	public int helium = 0;
-	public int lithium = 0;
-	public int berylium = 0;
-	public int boron = 0;
-	public int carbon = 0;
-	public int nitrogen = 0;
-	public int oxygen = 0;
-	public int fluorine = 0;
-	public int neon = 0;
-	public int sodium = 0;
-	public int magnesium = 0;
-	public int aluminium = 0;
-	public int silicon = 0;
-	public int phosphorus = 0;
-	public int sulfur = 0;
-	public int chlorine = 0;
-	public int argon = 0;
-	public int potassium = 0;
-	public int calcium = 0;*/
 
-	/*public int level = 1;
-	public bool level1;
-	public bool level2;
-	public bool level3;*/
+	public float rotationSpeed;
+	public float moveSpeed;
 
+	void Update(){
+		float x = Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed;
+		float z = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
+		transform.Rotate(0, x, 0);
+		transform.Translate(0, 0, z);
+	}
 	//private Transform cameraTransform;
 
-	public int counter = 0;
+	//public int counter = 0;
 
-	Vector3 movement;
-	Rigidbody playerRigidbody;
+	//Vector3 movement;
+	//Rigidbody playerRigidbody;
 
 
-	void Awake() {
+	/*void Awake() {
 		//DontDestroyOnLoad (Control);
 		playerRigidbody = GetComponent<Rigidbody> ();
 	}
@@ -75,7 +59,7 @@ public class PlayerMOvement : MonoBehaviour {
 			transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, speed * Time.deltaTime);
 		}
 	}
-		//End of character tutorial
+		//End of character tutorial*/
 
 
 
