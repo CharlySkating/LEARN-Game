@@ -17,7 +17,9 @@ public class PlayerMOvement : MonoBehaviour {
 		float x = Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed;
 		float z = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
 		transform.Rotate(0, x, 0);
-		transform.Translate(0, 0, z);
+
+        transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward * 2, z);
+		//transform.Translate(0, 0, z);
 	}
 	//private Transform cameraTransform;
 
