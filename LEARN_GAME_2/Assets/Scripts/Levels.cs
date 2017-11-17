@@ -26,6 +26,11 @@ public class Levels : MonoBehaviour {
 	 //new
 	public GameObject[] targetElements;
 	public GameObject Control;
+
+	//public Color startColor;
+	//public Color endColor;
+	//public Material material;
+
 	//public GameObject MainObject;
 	bool mDown =false;
 
@@ -46,12 +51,12 @@ public class Levels : MonoBehaviour {
 		gameObj2 = new GameObject("Line2");
 			lineList2 = gameObj2.AddComponent<LineRenderer> ();
 			lineList2.SetVertexCount (2);
-			lineList2.SetWidth (0.3f, 0.3f);
+			lineList2.SetWidth (0.1f, 0.1f);
 
 		gameObj3 = new GameObject("Line2");
 			lineList3 = gameObj3.AddComponent<LineRenderer> ();
 			lineList3.SetVertexCount (2);
-			lineList3.SetWidth (0.3f, 0.3f);
+			lineList3.SetWidth (0.1f, 0.1f);
 		//level = 1;
 		drawLine = true;
 		lineDrawn = false;
@@ -73,15 +78,15 @@ public class Levels : MonoBehaviour {
 			//Debug.Log (drawLine);
 		}
 			
-		if (drawLine){// & (Control.GetComponent<GlobalOpeningScript>().level ==1) ) {
+		/*if (drawLine){// & (Control.GetComponent<GlobalOpeningScript>().level ==1) ) {
 			//Debug.Log ("hi we are here level1");
 			//Application.LoadLevel ("level1");
 			drawLevel1 ();
 
 
 			//level++;
-		}
-		if (drawLine & (Control.GetComponent<GlobalOpeningScript>().level ==2)) {
+		}*/
+		if (drawLine){// & (Control.GetComponent<GlobalOpeningScript>().level ==2)) {
 			//Application.LoadLevel ("level2_new");
 			//linesDrawn = 0;
 			drawLevel2 ();
@@ -152,7 +157,7 @@ public class Levels : MonoBehaviour {
 					startPosition.z = 8;
 					//mDown = true;
 			      inDrawing =true;
-			Debug.Log ("START DRAWING:: " + startPosition);
+			//Debug.Log ("START DRAWING:: " + startPosition);
 
 			}
 		// new state
@@ -192,7 +197,7 @@ public class Levels : MonoBehaviour {
 
 			Vector2 s = new Vector2 (startPosition.x, startPosition.y);
 			Vector2 e = new Vector2 (endPoint.x, endPoint.y);
-		
+		//beginning of for loop
 				Vector2 electronL = new Vector2 (targetElement.GetComponent<bonding> ().possiblePositions [pos1].x, targetElement.GetComponent<bonding> ().possiblePositions [pos1].y);
 				Vector2 electronR = new Vector2 (targetElement1.GetComponent<bonding> ().possiblePositions [pos2].x, targetElement1.GetComponent<bonding> ().possiblePositions [pos2].y);
 			
@@ -222,13 +227,14 @@ public class Levels : MonoBehaviour {
 			PresetLine (currentLines, pos1, pos2);
 			linesDrawn++;
 			lineDrawn = false;
-		}
+		}//end of for loop
 	}
 
 	void PresetLine(LineRenderer finalLine, int loc1, int loc2) {
 		Debug.Log ("Correct Line");
 		rightAnswer = true;
-		finalLine.SetColors (Color.green, Color.green);
+		//finalLine.material = new Material(Shader.Find("Correct"));
+		//finalLine.SetColors (startColor, endColor);
 		finalLine.SetPosition(0,targetElement.GetComponent<bonding> ().possiblePositions [loc1]);
 		finalLine.SetPosition(1,targetElement1.GetComponent<bonding> ().possiblePositions [loc2]);
 		//drawLine = true;

@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\bonding.cs" />
      <Compile Include="Assets\bondingElectrons.cs" />
      <Compile Include="Assets\newBonding.cs" />
+     <None Include="Assets\Materials\CorrectLine.shader" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
