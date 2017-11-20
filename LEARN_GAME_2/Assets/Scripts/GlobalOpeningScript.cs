@@ -25,7 +25,7 @@ public class GlobalOpeningScript : MonoBehaviour {
 	public int potassium = 0;
 	public int calcium = 0;
 
-	public int level = 1;
+	public int level = 0;
 	public bool level1;
 	public bool level2;
 	public bool level3;
@@ -36,7 +36,7 @@ public class GlobalOpeningScript : MonoBehaviour {
 	// Use this for ielnitialization
 	void Start () {
 		DontDestroyOnLoad (transform.gameObject);
-
+		whichLevelDisplay ();
 
 	}
 
@@ -48,9 +48,9 @@ public class GlobalOpeningScript : MonoBehaviour {
 			Debug.Log ("B key was hit");
 			whichLevelDisplay ();
 		}
-		if (level > 1) {
-		whichLevelDisplay ();
-		}
+		//if (level > 1) {
+		//whichLevelDisplay ();
+		//}
 
 	}
 
@@ -97,10 +97,15 @@ public class GlobalOpeningScript : MonoBehaviour {
 
 	}
 
-	void whichLevelDisplay(){
+	public void whichLevelDisplay(){
+		if (level == 0) {
+			Application.LoadLevel ("Opening_world");
+			level++;
+		}
 
 		if (level == 1 && hydrogen >= 2) {
 			reload = false;
+			Debug.Log ("Display level1");
 			Application.LoadLevel ("level1");
 			hydrogen -=2;
 		} else if (level == 2 && oxygen >= 2) {
@@ -112,17 +117,18 @@ public class GlobalOpeningScript : MonoBehaviour {
 			Application.LoadLevel ("level3");
 			nitrogen -= 2;
 
-		} if (Input.GetKeyDown (KeyCode.W)) {
+	} else {
+		//Debug.Log ("Collect");
+
+		//return to opening world
+		Application.LoadLevel("Opening_world");
+	}
+	 if (Input.GetKeyDown (KeyCode.W)) {
 			//return to world
-			Application.LoadLevel("Opening_world");
+			Application.LoadLevel("level1");
 			//reload = true;
 		}
-		else {
-			//Debug.Log ("Collect");
-
-			//return to opening world
-			//Application.LoadLevel("Opening_world");
-		}
+		
 	}
 
 }

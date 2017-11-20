@@ -10,8 +10,13 @@ public class PlayerMOvement : MonoBehaviour {
 	//public float speed = 20f;
 	public GameObject Control;
 
+
 	public float rotationSpeed;
 	public float moveSpeed;
+
+	void Awake(){
+		Control = GameObject.Find ("MainObject");
+	}
 
 	void Update(){
 		float x = Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed;

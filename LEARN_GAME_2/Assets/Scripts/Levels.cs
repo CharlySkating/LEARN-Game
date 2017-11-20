@@ -32,6 +32,13 @@ public class Levels : MonoBehaviour {
 	public float possibleDistance;
 	public GameObject element;
 	public GameObject element2;
+	public int[] arrayLevel2;
+	public int[] arrayLevel1;
+	public int[] arrayLevel3;
+
+	public bool bond1 = false;
+	public bool bond2 = false;
+	public bool bond3 = false;
 
 	bool inDrawing =false;
 
@@ -81,7 +88,7 @@ public class Levels : MonoBehaviour {
 
 			level++;
 		}
-		if ((drawLine) & (Control.GetComponent<GlobalOpeningScript>().level ==2)) {
+		if (drawLine& (Control.GetComponent<GlobalOpeningScript>().level ==2)) {
 			//Application.LoadLevel ("level2_new");
 			//linesDrawn = 0;
 			drawLevel2 ();
@@ -95,52 +102,69 @@ public class Levels : MonoBehaviour {
 			drawLevel3 ();
 			//player.GetComponent<PlayerMOvement> ().level++;
 			//player.GetComponent<PlayerMOvement>().nitrogen -= 2;
-			//level++;
+			level++;
 		}
 
 	}
 
 	void drawLevel1() {
+		arrayLevel1 = new int[] { 2, 7 };
 
 		if (linesDrawn == 0) {
-			drawLines (lineList);
+			drawLines (lineList, arrayLevel1);
 			if (linesDrawn == 1) {
 				Control.GetComponent<GlobalOpeningScript> ().level++;
-				linesDrawn = 0;
 
+				linesDrawn = 0;
+				bond1 = false;
+				bond2 = false;
+				bond3 = false;
+				Control.GetComponent<GlobalOpeningScript> ().whichLevelDisplay ();
 			}
 
 		}
 	}
 
 	void drawLevel2() {
+		arrayLevel2 = new int[] { 2, 7, 4, 5 };
+
 		if (linesDrawn == 0) {
-			drawLines (lineList);
+			drawLines (lineList, arrayLevel2);
 		}else if (linesDrawn == 1) {
-			drawLines (lineList2);
+			drawLines (lineList2, arrayLevel2);
 			if (linesDrawn == 2) {
 				Control.GetComponent<GlobalOpeningScript> ().level++;
 				linesDrawn = 0;
+				bond1 = false;
+				bond2 = false;
+				bond3 = false;
+				Control.GetComponent<GlobalOpeningScript> ().whichLevelDisplay ();
+
 			}
 		}
 	}
 
 	void drawLevel3() {
-
+		arrayLevel3 = new int[] { 2, 7, 4, 5, 0, 1 };
+		//Debug.Log("
 		if (linesDrawn == 0) {
-			drawLines (lineList);
+			drawLines (lineList, arrayLevel3);
 		} else if (linesDrawn == 1) {
-			drawLines (lineList2);
+			drawLines (lineList2, arrayLevel3);
 		} else if (linesDrawn == 2) {
-			drawLines (lineList3);
+			drawLines (lineList3, arrayLevel3);
 			if (linesDrawn == 3) {
 				Control.GetComponent<GlobalOpeningScript> ().level++;
 				linesDrawn = 0;
+				bond1 = false;
+				bond2 = false;
+				bond3 = false;
+				Control.GetComponent<GlobalOpeningScript> ().whichLevelDisplay ();
 			}
 		}
 	}
 
-	void drawLines(LineRenderer currentLines){
+	void drawLines(LineRenderer currentLines, int[] levelArray){
 		
 		
 		if (Input.GetMouseButtonDown (0) && mDown ==false && inDrawing ==false) {
@@ -171,6 +195,7 @@ public class Levels : MonoBehaviour {
 				}
 
 		if (lineDrawn) {
+			bool leftToRight = true;
 			drawLine = false;
 			currentLines.SetPosition (0, startPosition);
 			currentLines.SetPosition (1, endPoint);
@@ -179,64 +204,81 @@ public class Levels : MonoBehaviour {
 			Vector2 e = new Vector2 (endPoint.x, endPoint.y);
 			//for all possible positions check if startPOsition is close to it (distance)
 			for (int i = 0; i < 8; i++) {
-				
+				//Debug.Log (s.x);
 				//check distance between startPosition and possible positions
 				if (s.x > 0) {
-
+					leftToRight = false;
+					//Debug.Log ("In first condition");
 					possibleDistance = Vector2.Distance (startPosition, targetElement1.GetComponent<bonding> ().possiblePositions [i]);
 
 					if (possibleDistance < 0.25) {
+						Debug.Log ("here");
 						pos1 = i;
-						if (pos1 == 0) {
-							pos2 = 1;
+						if ((Control.GetComponent<GlobalOpeningScript> ().level > 2) && bond1 == false && pos1 == levelArray[4] ) {
+							Debug.Log ("WE should not be in here");
+							pos2 = levelArray[5];
+							bond1 = true;
 						}
-						if (pos1 == 7) {
-							pos2 = 2;
+						if (Control.GetComponent<GlobalOpeningScript> ().level > 0 && bond2 == false && pos1 == levelArray[1] ) {
+							pos2 = levelArray[0];
+							bond2 = true;
 						}
-						if (pos1 == 5) {
-							pos2 = 4;
+						if (Control.GetComponent<GlobalOpeningScript> ().level > 1 && bond3 == false && pos1 == levelArray[3] ) {
+							pos2 = levelArray[2];
+							bond3 = true;
 						}
-						//break;
+						break;
 					}
 				} else  {
+					//Debug.Log ("In second condition");
+					leftToRight = true;
 					possibleDistance = Vector2.Distance (startPosition, targetElement.GetComponent<bonding> ().possiblePositions [i]);
 					if (possibleDistance < 0.25) {
 						pos1 = i;
-						if (pos1 == 2) {
-							pos2 = 7;
+						if (Control.GetComponent<GlobalOpeningScript> ().level > 0  && bond2 == false && pos1 == levelArray[0]) {
+							pos2 = levelArray[1];
+							bond2 = true;
 						}
-						if (pos1 == 4) {
-							pos2 = 5;
+						if (Control.GetComponent<GlobalOpeningScript> ().level > 1 && bond3 == false && pos1 == levelArray[2] ) {
+							pos2 = levelArray[3];
+							bond3 = true;
 						}
-						if (pos1 == 1) {
-							pos2 = 0;
+						if (Control.GetComponent<GlobalOpeningScript> ().level > 2 && bond1 == false && pos1 == levelArray[5] ) {
+							pos2 = levelArray[4];
+							bond1 = true;
 						}
 
-						//break;
+						break;
 					}
 				}
 			}
 				
 					
 							
-
+			Vector2 electronL = new Vector2 (0,0);
+			Vector2 electronR = new Vector2 (0,0);
 		
 				//beginning of for loop
+			if (leftToRight == true) {
 
-				Vector2 electronL = new Vector2 (targetElement.GetComponent<bonding> ().possiblePositions [pos1].x, targetElement.GetComponent<bonding> ().possiblePositions [pos1].y);
-				Vector2 electronR = new Vector2 (targetElement1.GetComponent<bonding> ().possiblePositions [pos2].x, targetElement1.GetComponent<bonding> ().possiblePositions [pos2].y);
+				electronL = new Vector2 (targetElement.GetComponent<bonding> ().possiblePositions [pos1].x, targetElement.GetComponent<bonding> ().possiblePositions [pos1].y);
+				electronR = new Vector2 (targetElement1.GetComponent<bonding> ().possiblePositions [pos2].x, targetElement1.GetComponent<bonding> ().possiblePositions [pos2].y);
+			} else if (leftToRight == false) {
+				electronL = new Vector2 (targetElement1.GetComponent<bonding> ().possiblePositions [pos1].x, targetElement1.GetComponent<bonding> ().possiblePositions [pos1].y);
+				electronR = new Vector2 (targetElement.GetComponent<bonding> ().possiblePositions [pos2].x, targetElement.GetComponent<bonding> ().possiblePositions [pos2].y);
 
-				if (s.x < e.x) {
+			}
+				//if (s.x < e.x) {
 					distanceS = Vector2.Distance (s, electronL);
 					distanceE = Vector2.Distance (e, electronR);
 					
-				} else {
-					distanceS = Vector2.Distance (s, electronR);
-					distanceE = Vector2.Distance (e, electronL);
-				}
+				/*} else {
+					distanceS = Vector2.Distance (s, electronL);
+					distanceE = Vector2.Distance (e, electronR);
+				}*/
 			
 		
-
+			Debug.Log (distanceS);
 		
 			if (lineDrawn & (distanceS > 0.25 || distanceE > 0.25)) {
 				//draw a new one
@@ -248,7 +290,11 @@ public class Levels : MonoBehaviour {
 		//if right line is drawn
 		else if (lineDrawn & (distanceS < 0.25 || distanceE < 0.25)) {
 				drawLine = true;
-				PresetLine (currentLines, pos1, pos2);
+				if (leftToRight == true) {
+					PresetLine (currentLines, pos1, pos2);
+				} else if (leftToRight == false) {
+					PresetLine (currentLines, pos2, pos1);
+				}
 				linesDrawn++;
 				lineDrawn = false;
 			}
