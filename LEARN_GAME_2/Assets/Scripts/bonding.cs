@@ -15,10 +15,7 @@ public class bonding : MonoBehaviour {
 
 
 	float distance = 8;
-	//public  GameObject targetElement;
-	//public bool released = false;
-	//public bool dragBond2 = true;
-	//public bool dragBond1 = true;
+
 	// Use this for initialization
 	void Start () {
 		possiblePositions[0]= new Vector3(transform.position.x-0.5f,transform.position.y+3.3f,10.0f);
@@ -34,45 +31,8 @@ public class bonding : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		/*if (Input.GetMouseButtonUp (0)) {
-			bool released = true;
-			ElectronPosition ();
-		} */
+		
 	}
 
-	/*void checkCollisions(Collision col){
-		if (col.gameObject.name == "Sphere" && boolPositions[0] == false) {
-			Debug.Log ("correct");
-			//Destroy (col.gameObject);
-			boolPositions[0] = true;
-		}
-	}
 
-	/*void OnMouseDrag() {
-		if (dragBond1 & dragBond2) {
-			Vector3 mousePosition = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, distance);
-			Vector3 objPosition = Camera.main.ScreenToWorldPoint (mousePosition);
-			transform.position = objPosition;
-		}
-	}//end of used code
-
-	void ElectronPosition () {
-		float xPos = transform.position.x;
-		float yPos = transform.position.y;
-
-		if (xPos < 0 & transform.position.x > (xPos+0.4f) & transform.position.x < (xPos + 2.4f) & transform.position.y > (yPos - 1) & transform.position.y < (yPos + 1)) { 
-			Vector3 newObjPos = new Vector3 (xPos + 1.4f, yPos, 10);
-			transform.position = newObjPos;
-			dragBond1 = false;
-		} else if (xPos > 0 & transform.position.x < (xPos-0.4f) & transform.position.x > (xPos - 2.4f) & transform.position.y > (yPos - 1) & transform.position.y < (yPos + 1)) {
-			Vector3 newObjPos = new Vector3 (xPos - 1.4f, yPos, 10);
-			transform.position = newObjPos;
-			dragBond2 = false;
-		} else {
-			Vector3 newObjPos = new Vector3 (xPos, yPos-3.5f, 8);
-			transform.position = newObjPos;
-
-		}
-
-	}*/
 }

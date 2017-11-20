@@ -21,47 +21,7 @@ public class PlayerMOvement : MonoBehaviour {
         transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward * 2, z);
 		//transform.Translate(0, 0, z);
 	}
-	//private Transform cameraTransform;
 
-	//public int counter = 0;
-
-	//Vector3 movement;
-	//Rigidbody playerRigidbody;
-
-
-	/*void Awake() {
-		//DontDestroyOnLoad (Control);
-		playerRigidbody = GetComponent<Rigidbody> ();
-	}
-
-
-	void FixedUpdate() {
-		float h = Input.GetAxisRaw ("Horizontal");
-		float v = Input.GetAxisRaw ("Vertical");
-
-		Move (h, v);
-		//Turning ();
-	}
-
-	void Move (float h, float v) {
-		movement.Set (h, 0f, v);
-		movement = movement.normalized * speed * Time.deltaTime;
-		playerRigidbody.MovePosition (transform.position + movement);
-	}
-
-	void Turning () {
-		
-		Plane playerPlane = new Plane (Vector3.up, transform.position);
-		Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition);
-		float hitdist = 0.0f;
-		//Causes player to follow mouse
-		if (playerPlane.Raycast (camRay, out hitdist)) {
-			Vector3 targetPoint = camRay.GetPoint (hitdist);
-			Quaternion targetRotation = Quaternion.LookRotation (targetPoint - transform.position);
-			transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, speed * Time.deltaTime);
-		}
-	}
-		//End of character tutorial*/
 
 
 
@@ -133,33 +93,5 @@ public class PlayerMOvement : MonoBehaviour {
 
 		
 
-	/*void whichLevelDisplay(){
-		Debug.Log ("Which level are we at");
-		  if (level == 1 && hydrogen >= 2) {
-			Debug.Log ("Display level 1");
-			level1 = true;
-			Application.LoadLevel ("level1");
-			hydrogen -= 2;
-			Debug.Log ("level"+level);
-			//level++;
-		} if (level == 2 && oxygen >= 2) {
-			Debug.Log ("Display level 2");
-			level2 = true;
-			Application.LoadLevel ("level2_new");
-			oxygen -= 2;
-			//level++;
-		} if (level == 3 && nitrogen >= 2) {
-			Debug.Log ("Display level 3");
-			level3 = true;
-			Application.LoadLevel ("level3");
-			nitrogen -= 2;
-			//level++;
-		} if (Input.GetKeyDown (KeyCode.W)) {
-			//return to world
-		}
-		else {
-			//return to opening world
-		}
-	}*/
 
 }

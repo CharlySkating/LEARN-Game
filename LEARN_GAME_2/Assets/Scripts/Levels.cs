@@ -9,7 +9,6 @@ public class Levels : MonoBehaviour {
 	public bool drawLine = false;
 	public bool lineDrawn;
 	public bool rightAnswer;
-	//public bool drawBonds;
 	public int level;
 	public Vector3 endPoint;
 	public Vector3 startPosition;
@@ -22,17 +21,17 @@ public class Levels : MonoBehaviour {
 	public float distanceE;
 	public GameObject targetElement;
 	public GameObject targetElement1;
-	public int levelUp;
-	 //new
 	public GameObject[] targetElements;
 	public GameObject Control;
-
-	//public Color startColor;
-	//public Color endColor;
-	//public Material material;
-
-	//public GameObject MainObject;
+	public Material mat1;
+	public Material mat2;
+	public Material mat3;
 	bool mDown =false;
+	public int pos1;
+	public int pos2;
+	public float possibleDistance;
+	public GameObject element;
+	public GameObject element2;
 
 	bool inDrawing =false;
 
@@ -57,16 +56,13 @@ public class Levels : MonoBehaviour {
 			lineList3 = gameObj3.AddComponent<LineRenderer> ();
 			lineList3.SetVertexCount (2);
 			lineList3.SetWidth (0.1f, 0.1f);
-		//level = 1;
 		drawLine = true;
 		lineDrawn = false;
 		rightAnswer = false;
-		//drawBonds = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//levelUp = player.GetComponent<PlayerMOvement> ().level;
 		drawLine = true;
 
 		//targetElements [j].GetComponent<bonding> ().countPositionsFilled++;
@@ -75,24 +71,23 @@ public class Levels : MonoBehaviour {
 			if (targetElements [i].GetComponent<bonding> ().possiblePositions.Length != targetElements [i].GetComponent<bonding> ().countPositionsFilled) {
 				drawLine = false;
 			}
-			//Debug.Log (drawLine);
 		}
 			
-		/*if (drawLine){// & (Control.GetComponent<GlobalOpeningScript>().level ==1) ) {
+		if (drawLine & (Control.GetComponent<GlobalOpeningScript>().level ==1) ) {
 			//Debug.Log ("hi we are here level1");
 			//Application.LoadLevel ("level1");
 			drawLevel1 ();
 
 
-			//level++;
-		}*/
-		if (drawLine){// & (Control.GetComponent<GlobalOpeningScript>().level ==2)) {
+			level++;
+		}
+		if ((drawLine) & (Control.GetComponent<GlobalOpeningScript>().level ==2)) {
 			//Application.LoadLevel ("level2_new");
 			//linesDrawn = 0;
 			drawLevel2 ();
 			//player.GetComponent<PlayerMOvement> ().level++;
 			//player.GetComponent<PlayerMOvement>().oxygen -= 2;
-		//	level++;
+		level++;
 		}
 		if (drawLine & (Control.GetComponent<GlobalOpeningScript>().level ==3)) {
 			//Application.LoadLevel ("level3");
@@ -108,8 +103,7 @@ public class Levels : MonoBehaviour {
 	void drawLevel1() {
 
 		if (linesDrawn == 0) {
-			drawLines (lineList,2,7);
-			Debug.Log ("We have drawn lines");
+			drawLines (lineList);
 			if (linesDrawn == 1) {
 				Control.GetComponent<GlobalOpeningScript> ().level++;
 				linesDrawn = 0;
@@ -120,13 +114,10 @@ public class Levels : MonoBehaviour {
 	}
 
 	void drawLevel2() {
-		Debug.Log ("hello");
 		if (linesDrawn == 0) {
-			Debug.Log ("we are drawingLine1");
-			drawLines (lineList,2,7);
+			drawLines (lineList);
 		}else if (linesDrawn == 1) {
-			Debug.Log ("we are drawingLine2");
-			drawLines (lineList2,4,5);
+			drawLines (lineList2);
 			if (linesDrawn == 2) {
 				Control.GetComponent<GlobalOpeningScript> ().level++;
 				linesDrawn = 0;
@@ -137,11 +128,11 @@ public class Levels : MonoBehaviour {
 	void drawLevel3() {
 
 		if (linesDrawn == 0) {
-			drawLines (lineList, 1, 0);
+			drawLines (lineList);
 		} else if (linesDrawn == 1) {
-			drawLines (lineList2, 2, 7);
+			drawLines (lineList2);
 		} else if (linesDrawn == 2) {
-			drawLines (lineList3, 4, 5);
+			drawLines (lineList3);
 			if (linesDrawn == 3) {
 				Control.GetComponent<GlobalOpeningScript> ().level++;
 				linesDrawn = 0;
@@ -149,38 +140,29 @@ public class Levels : MonoBehaviour {
 		}
 	}
 
-	void drawLines(LineRenderer currentLines, int pos1, int pos2){
+	void drawLines(LineRenderer currentLines){
+		
 		
 		if (Input.GetMouseButtonDown (0) && mDown ==false && inDrawing ==false) {
 				
 					startPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 					startPosition.z = 8;
-					//mDown = true;
 			      inDrawing =true;
-			//Debug.Log ("START DRAWING:: " + startPosition);
 
 			}
 		// new state
 		if (inDrawing ==true) {
-
-			//startPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			//startPosition.z = 8;
-			//mDown = true;
-			//inDrawing =true;
 			endPoint = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			endPoint.z = 8;
+			currentLines.material = mat3;
 			currentLines.SetPosition (0, startPosition);
 			currentLines.SetPosition (1, endPoint);
-			//PresetLine (currentLines, startPosition, endPoint);
-			Debug.Log ("DRAWING:: " + endPoint);
 			mDown = true;
 
 		}
 
 	
 		if (Input.GetMouseButtonUp (0) && mDown ==true) {
-				
-			   Debug.Log ("x end:: "+endPoint.x);
 					endPoint = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 					endPoint.z = 8;
 					lineDrawn = true;
@@ -188,57 +170,97 @@ public class Levels : MonoBehaviour {
 			        inDrawing = false;
 				}
 
-			if (lineDrawn) {
-			Debug.Log ("IN HERE");
-				drawLine = false;
-			currentLines.SetColors (Color.red, Color.red);
-				currentLines.SetPosition (0, startPosition);
-				currentLines.SetPosition (1, endPoint);
+		if (lineDrawn) {
+			drawLine = false;
+			currentLines.SetPosition (0, startPosition);
+			currentLines.SetPosition (1, endPoint);
 
 			Vector2 s = new Vector2 (startPosition.x, startPosition.y);
 			Vector2 e = new Vector2 (endPoint.x, endPoint.y);
-		//beginning of for loop
+			//for all possible positions check if startPOsition is close to it (distance)
+			for (int i = 0; i < 8; i++) {
+				
+				//check distance between startPosition and possible positions
+				if (s.x > 0) {
+
+					possibleDistance = Vector2.Distance (startPosition, targetElement1.GetComponent<bonding> ().possiblePositions [i]);
+
+					if (possibleDistance < 0.25) {
+						pos1 = i;
+						if (pos1 == 0) {
+							pos2 = 1;
+						}
+						if (pos1 == 7) {
+							pos2 = 2;
+						}
+						if (pos1 == 5) {
+							pos2 = 4;
+						}
+						//break;
+					}
+				} else  {
+					possibleDistance = Vector2.Distance (startPosition, targetElement.GetComponent<bonding> ().possiblePositions [i]);
+					if (possibleDistance < 0.25) {
+						pos1 = i;
+						if (pos1 == 2) {
+							pos2 = 7;
+						}
+						if (pos1 == 4) {
+							pos2 = 5;
+						}
+						if (pos1 == 1) {
+							pos2 = 0;
+						}
+
+						//break;
+					}
+				}
+			}
+				
+					
+							
+
+		
+				//beginning of for loop
+
 				Vector2 electronL = new Vector2 (targetElement.GetComponent<bonding> ().possiblePositions [pos1].x, targetElement.GetComponent<bonding> ().possiblePositions [pos1].y);
 				Vector2 electronR = new Vector2 (targetElement1.GetComponent<bonding> ().possiblePositions [pos2].x, targetElement1.GetComponent<bonding> ().possiblePositions [pos2].y);
-			
+
 				if (s.x < e.x) {
 					distanceS = Vector2.Distance (s, electronL);
 					distanceE = Vector2.Distance (e, electronR);
+					
 				} else {
 					distanceS = Vector2.Distance (s, electronR);
 					distanceE = Vector2.Distance (e, electronL);
 				}
-			}
-		if (lineDrawn &(distanceS >0.25 || distanceE > 0.25)) {
-			Debug.Log ("wrong line");
-			currentLines.SetColors (Color.red, Color.red);
-			//draw a new one
-			drawLine = true;
-			lineDrawn = false;
-
-		}
-		//if write line is drawn
-		else if (lineDrawn & (distanceS < 0.25 || distanceE < 0.25)) {
 			
-			drawLine = true;
+		
 
-			//lineDrawn = true;
-			//call function to draw official line
-			PresetLine (currentLines, pos1, pos2);
-			linesDrawn++;
-			lineDrawn = false;
-		}//end of for loop
+		
+			if (lineDrawn & (distanceS > 0.25 || distanceE > 0.25)) {
+				//draw a new one
+				currentLines.material = mat2;
+				drawLine = true;
+				lineDrawn = false;
+
+			}
+		//if right line is drawn
+		else if (lineDrawn & (distanceS < 0.25 || distanceE < 0.25)) {
+				drawLine = true;
+				PresetLine (currentLines, pos1, pos2);
+				linesDrawn++;
+				lineDrawn = false;
+			}
+		
+		//end of for loop
+		}
 	}
 
 	void PresetLine(LineRenderer finalLine, int loc1, int loc2) {
-		Debug.Log ("Correct Line");
 		rightAnswer = true;
-		//finalLine.material = new Material(Shader.Find("Correct"));
-		//finalLine.SetColors (startColor, endColor);
+		finalLine.material = mat1;
 		finalLine.SetPosition(0,targetElement.GetComponent<bonding> ().possiblePositions [loc1]);
 		finalLine.SetPosition(1,targetElement1.GetComponent<bonding> ().possiblePositions [loc2]);
-		//drawLine = true;
-		//lineDrawn = false;
-		//linesDrawn++;
 	}
 }

@@ -14,15 +14,15 @@ public class DisplayElements : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		allElements = new GameObject[4,20];
-		for (int j = 0; j < 4; j++) {
+		allElements = new GameObject[6,20];
+		for (int j = 0; j < 6; j++) {
 			
 
 			elementsArray = new GameObject[20];
 			elementsArray = Resources.LoadAll<GameObject> ("preFabs");
 			for (int i = 0; i < 20; i++) {
 
-				transform.position = new Vector3 (Random.Range (-5, 25), 0, Random.Range (0, 80));
+				transform.position = new Vector3 (Random.Range (-50, 50), 0, Random.Range (-50, 50));
 				elementsArray [i] = Instantiate (elementsArray [i], transform.position, Quaternion.identity) as GameObject;
 				allElements [j, i] = elementsArray [i];
 			}
