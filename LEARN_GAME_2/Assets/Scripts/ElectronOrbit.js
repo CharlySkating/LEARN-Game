@@ -3,8 +3,13 @@ var myElement : GameObject;
 
 
 function Start () {
+var myMaterial = GetComponent.<Renderer>().material;
 
+Debug.Log(myMaterial.color);
 // myElement.transform.root;
+for (var child: Transform in transform) {
+child.GetComponent.<Renderer>().material.CopyPropertiesFromMaterial(myMaterial);
+}
 	}
 
 function Update () {

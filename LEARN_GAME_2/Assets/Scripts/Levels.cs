@@ -86,7 +86,7 @@ public class Levels : MonoBehaviour {
 			drawLevel1 ();
 
 
-			level++;
+			//level++;
 		}
 		if (drawLine& (Control.GetComponent<GlobalOpeningScript>().level ==2)) {
 			//Application.LoadLevel ("level2_new");
@@ -94,7 +94,7 @@ public class Levels : MonoBehaviour {
 			drawLevel2 ();
 			//player.GetComponent<PlayerMOvement> ().level++;
 			//player.GetComponent<PlayerMOvement>().oxygen -= 2;
-		level++;
+		//level++;
 		}
 		if (drawLine & (Control.GetComponent<GlobalOpeningScript>().level ==3)) {
 			//Application.LoadLevel ("level3");
@@ -102,7 +102,7 @@ public class Levels : MonoBehaviour {
 			drawLevel3 ();
 			//player.GetComponent<PlayerMOvement> ().level++;
 			//player.GetComponent<PlayerMOvement>().nitrogen -= 2;
-			level++;
+			//level++;
 		}
 
 	}
@@ -113,12 +113,14 @@ public class Levels : MonoBehaviour {
 		if (linesDrawn == 0) {
 			drawLines (lineList, arrayLevel1);
 			if (linesDrawn == 1) {
-				Control.GetComponent<GlobalOpeningScript> ().level++;
+				
 
 				linesDrawn = 0;
 				bond1 = false;
 				bond2 = false;
 				bond3 = false;
+				Control.GetComponent<GlobalOpeningScript> ().level++;
+				Control.GetComponent<GlobalOpeningScript> ().hydrogen-=2;
 				Control.GetComponent<GlobalOpeningScript> ().whichLevelDisplay ();
 			}
 
@@ -133,11 +135,13 @@ public class Levels : MonoBehaviour {
 		}else if (linesDrawn == 1) {
 			drawLines (lineList2, arrayLevel2);
 			if (linesDrawn == 2) {
-				Control.GetComponent<GlobalOpeningScript> ().level++;
+				
 				linesDrawn = 0;
 				bond1 = false;
 				bond2 = false;
 				bond3 = false;
+				Control.GetComponent<GlobalOpeningScript> ().level++;
+				Control.GetComponent<GlobalOpeningScript> ().oxygen-=2;
 				Control.GetComponent<GlobalOpeningScript> ().whichLevelDisplay ();
 
 			}
@@ -154,11 +158,13 @@ public class Levels : MonoBehaviour {
 		} else if (linesDrawn == 2) {
 			drawLines (lineList3, arrayLevel3);
 			if (linesDrawn == 3) {
-				Control.GetComponent<GlobalOpeningScript> ().level++;
+				
 				linesDrawn = 0;
 				bond1 = false;
 				bond2 = false;
 				bond3 = false;
+				Control.GetComponent<GlobalOpeningScript> ().level++;
+				Control.GetComponent<GlobalOpeningScript> ().nitrogen -= 2;
 				Control.GetComponent<GlobalOpeningScript> ().whichLevelDisplay ();
 			}
 		}

@@ -48,6 +48,12 @@ public class GlobalOpeningScript : MonoBehaviour {
 			Debug.Log ("B key was hit");
 			whichLevelDisplay ();
 		}
+		if (Input.GetKeyDown (KeyCode.W)) {
+			//return to world
+			Debug.Log("THis should work");
+			Application.LoadLevel("Opening_world");
+			//reload = true;
+		}
 		//if (level > 1) {
 		//whichLevelDisplay ();
 		//}
@@ -107,15 +113,15 @@ public class GlobalOpeningScript : MonoBehaviour {
 			reload = false;
 			Debug.Log ("Display level1");
 			Application.LoadLevel ("level1");
-			hydrogen -=2;
+			//hydrogen -=2;
 		} else if (level == 2 && oxygen >= 2) {
 			Application.LoadLevel ("level2_new");
-		    oxygen -= 2;
+		   // oxygen -= 2;
 
 		} else if (level == 3 && nitrogen >= 2) {
 			
 			Application.LoadLevel ("level3");
-			nitrogen -= 2;
+			//nitrogen -= 2;
 
 	} else {
 		//Debug.Log ("Collect");
@@ -123,11 +129,7 @@ public class GlobalOpeningScript : MonoBehaviour {
 		//return to opening world
 		Application.LoadLevel("Opening_world");
 	}
-	 if (Input.GetKeyDown (KeyCode.W)) {
-			//return to world
-			Application.LoadLevel("level1");
-			//reload = true;
-		}
+	 
 		
 	}
 
