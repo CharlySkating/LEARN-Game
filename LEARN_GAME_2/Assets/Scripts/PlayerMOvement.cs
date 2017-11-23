@@ -14,6 +14,8 @@ public class PlayerMOvement : MonoBehaviour {
 	public float rotationSpeed;
 	public float moveSpeed;
 
+
+
 	void Awake(){
 		Control = GameObject.Find ("MainObject");
 	}
@@ -25,6 +27,9 @@ public class PlayerMOvement : MonoBehaviour {
 
         transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward * 2, z);
 		//transform.Translate(0, 0, z);
+
+
+
 	}
 
 

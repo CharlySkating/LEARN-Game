@@ -33,6 +33,7 @@ public class GlobalOpeningScript : MonoBehaviour {
 
 
 
+
 	// Use this for ielnitialization
 	void Start () {
 		DontDestroyOnLoad (transform.gameObject);
@@ -43,7 +44,7 @@ public class GlobalOpeningScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 		if (Input.GetKeyDown (KeyCode.B)) {
 			Debug.Log ("B key was hit");
 			whichLevelDisplay ();
@@ -54,6 +55,9 @@ public class GlobalOpeningScript : MonoBehaviour {
 			Application.LoadLevel("Opening_world");
 			//reload = true;
 		}
+
+		//if player is within this distance from door and hits key load level
+
 		//if (level > 1) {
 		//whichLevelDisplay ();
 		//}
