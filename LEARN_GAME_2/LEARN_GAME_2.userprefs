@@ -1,15 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerMOvement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ElectronOrbit.js">
     <Files>
-      <File FileName="Assets/Scripts/Levels.cs" Line="50" Column="3" />
+      <File FileName="Assets/Scripts/Levels.cs" Line="167" Column="64" />
       <File FileName="Assets/Scripts/PlayerMOvement.cs" Line="18" Column="44" />
       <File FileName="Assets/Scripts/bonding.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GlobalOpeningScript.cs" Line="47" Column="38" />
+      <File FileName="Assets/Scripts/GlobalOpeningScript.cs" Line="56" Column="4" />
       <File FileName="Assets/Scripts/ElementMoveIndividual.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DisplayElements.cs" Line="25" Column="87" />
-      <File FileName="Assets/Scripts/HintScript.cs" Line="38" Column="32" />
+      <File FileName="Assets/Scripts/DisplayElements.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HintScript.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/DraggingElectrons.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ElectronOrbit.js" Line="11" Column="62" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\GlobalOpeningScript.cs" />
      <Compile Include="Assets\Scripts\HintScript.cs" />
      <Compile Include="Assets\Scripts\Levels.cs" />
+     <Compile Include="Assets\Scripts\MouseHover.cs" />
      <Compile Include="Assets\Scripts\PlayerMOvement.cs" />
      <Compile Include="Assets\Scripts\bonding.cs" />
      <Compile Include="Assets\bondingElectrons.cs" />
