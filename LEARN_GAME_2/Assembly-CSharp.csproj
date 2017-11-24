@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Levels.cs" />
      <Compile Include="Assets\Scripts\MouseHover.cs" />
      <Compile Include="Assets\Scripts\PlayerMOvement.cs" />
+     <Compile Include="Assets\Scripts\TypeWriterEffect.cs" />
      <Compile Include="Assets\Scripts\bonding.cs" />
      <Compile Include="Assets\bondingElectrons.cs" />
      <Compile Include="Assets\newBonding.cs" />
