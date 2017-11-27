@@ -5,10 +5,10 @@ using UnityEngine;
 public class HintScript : MonoBehaviour {
 
 	// Use this for initialization
-	public GameObject[] hintPositions;
+	public GameObject[] hintPositions1;
 	public GameObject cylinder;
 	public GameObject[] targets;
-	public Vector3[] positions;
+	public Vector3[] positions2;
 	public Vector3 rotation;
 	public GameObject lines;
 	//public Renderer rend[];
@@ -16,14 +16,15 @@ public class HintScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		hintPositions = new GameObject[16];
+		hintPositions1 = new GameObject[16];
 		int index = 0;
 		for (int j = 0; j < 2; j++) {
 			
 			for (int i = 0; i < 8; i++) {
-					positions [i] = targets [j].GetComponent<bonding> ().possiblePositions [i];
-					hintPositions [index] = Instantiate (cylinder, positions [i], Quaternion.Euler (90, 0, 0)) as GameObject;
-					hintPositions[index].SetActive(true);
+					positions2 [i] = targets [j].GetComponent<bonding> ().possiblePositions [i];
+					hintPositions1 [index] = Instantiate (cylinder, positions2 [i], Quaternion.Euler (90, 0, 0)) as GameObject;
+					hintPositions1[index].SetActive(true);
+				Debug.Log (targets [j].GetComponent<bonding> ().possiblePositions [i]);
 				index++;
 				} 
 			}
@@ -41,9 +42,10 @@ public class HintScript : MonoBehaviour {
 		}
 	}
 		if (count == 2) {
-			for(int i=0; i< hintPositions.Length;i++)
+			for(int i=0; i< hintPositions1.Length;i++)
 			{
-				Destroy(hintPositions[i]);
+				Destroy(hintPositions1[i]);
+				Debug.Log ("We are destroying the hint positions");
 			}
 				
 		}

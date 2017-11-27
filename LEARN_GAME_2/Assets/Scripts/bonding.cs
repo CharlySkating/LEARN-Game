@@ -17,7 +17,8 @@ public class bonding : MonoBehaviour {
 	float distance = 8;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+		Debug.Log ("We are setting positions");
 		possiblePositions[0]= new Vector3(transform.position.x-0.5f,transform.position.y+3.3f,10.0f);
 		possiblePositions[1]= new Vector3(transform.position.x+0.5f,transform.position.y+3.3f,10.0f);
 		possiblePositions[2]= new Vector3(transform.position.x+2.0f,transform.position.y+1.8f,10.0f);

@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\ElementMoveIndividual.cs" />
      <Compile Include="Assets\Scripts\GlobalOpeningScript.cs" />
      <Compile Include="Assets\Scripts\HintScript.cs" />
+     <Compile Include="Assets\Scripts\IonicBonding.cs" />
      <Compile Include="Assets\Scripts\LabScene.cs" />
      <Compile Include="Assets\Scripts\Levels.cs" />
      <Compile Include="Assets\Scripts\MouseHover.cs" />
