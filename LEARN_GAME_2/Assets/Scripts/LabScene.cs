@@ -11,6 +11,7 @@ public class LabScene : MonoBehaviour {
 	public GameObject vault;
 	public Vector2 playerPos;
 	public Vector2 vaultPos;
+	public GameObject cam;
 	// Use this for initialization
 	void Start () {
 		
@@ -18,12 +19,24 @@ public class LabScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(cam.GetComponent<CameraFollow> ().playerMove == true) {
+			Debug.Log ("we can move player");
 
-		float x = Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed;
-		float z = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
-		transform.Rotate(0, x, 0);
+		float x = Input.GetAxis ("Horizontal") * Time.deltaTime * rotationSpeed;
+		float z = Input.GetAxis ("Vertical") * Time.deltaTime * moveSpeed;
+		transform.Rotate (0, x, 0);
 
-		transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward * 2, z);
+		transform.position = Vector3.MoveTowards (transform.position, transform.position + transform.forward * 2, z);
+		} 
+
+		if (cam.GetComponent<CameraFollow> ().playerMove == false) {
+			//lock player position and set to a specific location
+			Debug.Log("we don't move player");
+			transform.position = new Vector3(-3.6f,19.6f,17.59f);
+			transform.rotation = new Quaternion (0.0f, 180.0f, 0.0f, 0.0f);
+ 		}
+
+
 
 		playerPos = new Vector2 (transform.position.x, transform.position.z);
 		vaultPos = new Vector2 (vault.transform.position.x, vault.transform.position.z);
@@ -34,5 +47,8 @@ public class LabScene : MonoBehaviour {
 			Debug.Log ("We can open door");
 			Application.LoadLevel ("OpeningEmpty");
 		}
+			
 	}
+
+
 }

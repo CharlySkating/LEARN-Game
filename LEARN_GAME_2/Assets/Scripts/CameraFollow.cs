@@ -12,10 +12,14 @@ public class CameraFollow : MonoBehaviour {
 	public Vector2 stationPos;
 	public GameObject player;
 	public GameObject station;
-
+	public Animator anim;
+	public bool playerMove = true;
+	public bool loadLevel = false;
+	//public string animationName = "ZoomCamera";
+	//public Animation mation;
 
 	void Start() {
-		
+		anim = GetComponent<Animator> ();
 	}
 
 	void Update(){
@@ -23,12 +27,17 @@ public class CameraFollow : MonoBehaviour {
 		stationPos = new Vector2 (station.transform.position.x, station.transform.position.z);
 		charStatDist = Vector2.Distance (characterPos, stationPos);
 		if (charStatDist < 5 && Input.GetKeyDown (KeyCode.Q)) {
+			playerMove =! playerMove;
 			Debug.Log ("We can move camera");
 			//trigger camera movement
-			transform.Translate(0,1,4);
-			transform.Rotate (90, 0, 0);
-			transform.Translate (0, 0, 0.6f);
+			anim.SetTrigger("ZoomCamera");
+			//StartCoroutine (loadLevels());
+
 		}
+	}
+
+	void loadLevels(){
+		Application.LoadLevel ("level1");
 	}
 
 

@@ -36,12 +36,13 @@ public class PlayerMOvement : MonoBehaviour {
 		//transform.Translate(0, 0, z);
 
 		playerPos = new Vector2 (transform.position.x, transform.position.z);
-		//RVPos = new Vector2 (door.transform.position.x, door.transform.position.z);
-		//RVDist = Vector2.Distance (playerPos, RVPos);
+		RVPos = new Vector2 (door.transform.position.x, door.transform.position.z);
+		RVDist = Vector2.Distance (playerPos, RVPos);
 
-		/*if (RVDist < 3 && Input.GetKeyDown (KeyCode.O)) {
+		if (RVDist < 3 && Input.GetKeyDown (KeyCode.O)) {
 			Debug.Log ("We have entered RV");
-		}*/
+			Application.LoadLevel ("ScienceLab");
+		}
 
 		//elements = GetComponent<DisplayElements>().elementsArray;
 		globalElements = elementObjectArray.GetComponent<DisplayElements> ().allElements;
@@ -59,87 +60,66 @@ public class PlayerMOvement : MonoBehaviour {
 					if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Aluminium(Clone)") {
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().aluminium++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Argon(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().argon++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Beryllium(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().berylium++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Boron(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().boron++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Calcium(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().calcium++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Carbon(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().carbon++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Chlorine(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().chlorine++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Florine(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().fluorine++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Helium(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().helium++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Hydrogen(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().hydrogen++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Lithium(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().lithium++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Magnesium(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().magnesium++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Neon(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().neon++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Nitrogen(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().nitrogen++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Oxygen(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().oxygen++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Phospherous(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().phosphorus++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Potassium(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().potassium++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Sodium(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().sodium++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Silicon(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().silicon++;
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Sulfur(Clone)") {
+						Destroy (globalElements [j, i]);
+						Control.GetComponent<GlobalOpeningScript> ().sulfur++;
 					}
 				}
 			}
 		}
-
 	}
-
-
-
-
-	/*void OnCollisionEnter (Collision col){
-
-		//if (col.gameObject.name == "Aluminium(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-		//	Destroy (col.gameObject);
-		//	Control.GetComponent<GlobalOpeningScript>().aluminium++;
-		//}
-		if (col.gameObject.name == "Argon(Clone)") {
-			if (Input.GetKeyDown (KeyCode.Space)) {
-				Destroy (col.gameObject);
-			
-			Control.GetComponent<GlobalOpeningScript> ().argon++;
-			}
-		}	if (col.gameObject.name == "Beryllium(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().berylium++;
-		}	if (col.gameObject.name == "Boron(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().boron++;
-		}	if (col.gameObject.name == "Calcium(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().calcium++;
-		}	if (col.gameObject.name == "Carbon(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().carbon++;
-		}	if (col.gameObject.name == "Chlorine(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().chlorine++;
-		}	if (col.gameObject.name == "Florine(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().fluorine++;
-		}	if (col.gameObject.name == "Helium(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().helium++;
-		}	if (col.gameObject.name == "Hydrogen(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().hydrogen++;
-		}	if (col.gameObject.name == "Lithium(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().lithium++;
-		}	if (col.gameObject.name == "Magnesium(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().magnesium++;
-		}	if (col.gameObject.name == "Neon(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().neon++;
-		}	if (col.gameObject.name == "Nitrogen(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().nitrogen++;
-		}	if (col.gameObject.name == "Oxygen(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().oxygen++;
-		}	if (col.gameObject.name == "Phospherous(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().phosphorus++;
-		}	if (col.gameObject.name == "Potassium(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().potassium++;
-		}	if (col.gameObject.name == "Sodium(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().sodium++;
-		}	if (col.gameObject.name == "Silicon(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().silicon++;
-		}	if (col.gameObject.name == "Sulfur(Clone)" && Input.GetKeyDown (KeyCode.Space)) {
-			Destroy (col.gameObject);
-			Control.GetComponent<GlobalOpeningScript>().sulfur++;
-		}
-
-	}*/
-
-		
-
-
 }
