@@ -80,7 +80,7 @@ public class Levels : MonoBehaviour {
 			}
 		}
 			
-		if (drawLine & (Control.GetComponent<GlobalOpeningScript>().level ==1) ) {
+		/*if (drawLine & (Control.GetComponent<GlobalOpeningScript>().level ==1) ) {
 			//Debug.Log ("hi we are here level1");
 			//Application.LoadLevel ("level1");
 			drawLevel1 ();
@@ -95,8 +95,8 @@ public class Levels : MonoBehaviour {
 			//player.GetComponent<PlayerMOvement> ().level++;
 			//player.GetComponent<PlayerMOvement>().oxygen -= 2;
 		//level++;
-		}
-		if (drawLine & (Control.GetComponent<GlobalOpeningScript>().level ==3)) {
+		}*/
+		if (drawLine){// & (Control.GetComponent<GlobalOpeningScript>().level ==3)) {
 			//Application.LoadLevel ("level3");
 			//linesDrawn = 0;
 			drawLevel3 ();

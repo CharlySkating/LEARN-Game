@@ -271,6 +271,7 @@ public class IonicBonding : MonoBehaviour {
 				arrow2.material = mat2;
 				drawLine = true;
 				lineDrawn = false;
+				GameObject.Find ("MoveableElectron").transform.position =new Vector3 (targetElement.GetComponent<bonding>().possiblePositions[2].x,targetElement.GetComponent<bonding>().possiblePositions[2].y,8);
 
 			}
 			//if right line is drawn

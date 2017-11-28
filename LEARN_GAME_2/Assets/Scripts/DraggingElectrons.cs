@@ -49,7 +49,6 @@ public class DraggingElectrons : MonoBehaviour {
 						if (j == 0 && i == 2) {
 							//dragBondAgain = true;
 							this.name = "MoveableElectron";
-
 						}
 						targetElements [j].GetComponent<bonding> ().boolPositions [i] = true;
 						targetElements [j].GetComponent<bonding> ().countPositionsFilled++;
