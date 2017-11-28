@@ -25,6 +25,48 @@ public class GlobalOpeningScript : MonoBehaviour {
 	public int potassium = 0;
 	public int calcium = 0;
 
+	public Texture HydrogenLetter;
+	public Texture HeliumLetter;
+	public Texture LithiumLetter;
+	public Texture BeryliumLetter;
+	public Texture BoronLetter;
+	public Texture CarbonLetter;
+	public Texture NitrogenLetter;
+	public Texture OxygenLetter;
+	public Texture FluorineLetter;
+	public Texture NeonLetter;
+	public Texture SodiumLetter;
+	public Texture MagnesiumLetter;
+	public Texture AluminiumLetter;
+	public Texture SiliconLetter;
+	public Texture PhosphorusLetter;
+	public Texture SulfurLetter;
+	public Texture ChlorineLetter;
+	public Texture ArgonLetter;
+	public Texture PotassiumLetter;
+	public Texture CalciumLetter;
+
+	public Texture HydrogenImage;
+	public Texture HeliumImage;
+	public Texture LithiumImage;
+	public Texture BeryliumImage;
+	public Texture BoronImage;
+	public Texture CarbonImage;
+	public Texture NitrogenImage;
+	public Texture OxygenImage;
+	public Texture FluorineImage;
+	public Texture NeonImage;
+	public Texture SodiumImage;
+	public Texture MagnesiumImage;
+	public Texture AluminiumImage;
+	public Texture SiliconImage;
+	public Texture PhosphorusImage;
+	public Texture SulfurImage;
+	public Texture ChlorineImage;
+	public Texture ArgonImage;
+	public Texture PotassiumImage;
+	public Texture CalciumImage;
+
 	public int level = 0;
 	public bool level1;
 	public bool level2;
@@ -68,9 +110,9 @@ public class GlobalOpeningScript : MonoBehaviour {
 		//if (counter == 2) {
 		//Debug.Log ("Time to make some bonds");
 		//if (reload == true) {
-			GUI.contentColor = Color.black;
-			GUI.skin.label.fontSize = 12;
-			GUI.Label (new Rect (10, 10, 100, 20), "Hydrogen " + hydrogen.ToString ());
+		GUI.contentColor = Color.black;
+		GUI.skin.label.fontSize = 15;
+		/*GUI.Label (new Rect (10, 10, 100, 20), "Hydrogen " + hydrogen.ToString ());
 			GUI.Label (new Rect (10, 25, 100, 20), "Helium " + helium.ToString ());
 			GUI.Label (new Rect (10, 40, 100, 20), "Lithium " + lithium.ToString ());
 			GUI.Label (new Rect (10, 55, 100, 20), "Berylium " + berylium.ToString ());
@@ -89,8 +131,41 @@ public class GlobalOpeningScript : MonoBehaviour {
 			GUI.Label (new Rect (10, 250, 100, 20), "Chlorine " + chlorine.ToString ());
 			GUI.Label (new Rect (10, 265, 100, 20), "Argon " + argon.ToString ());
 			GUI.Label (new Rect (10, 280, 100, 20), "Potassium " + potassium.ToString ());
-			GUI.Label (new Rect (10, 295, 100, 20), "Calcium " + calcium.ToString ());
+			GUI.Label (new Rect (10, 295, 100, 20), "Calcium " + calcium.ToString ());*/
+
+		//if (hovered over image){
+		//change to the other image
+
+		//} else if we are not hovering over image {
+		//display the first image
 		//}
+
+		GUI.DrawTexture (new Rect (50, 10, 40, 40), AluminiumLetter);
+		GUI.Label (new Rect (90, 30, 40, 40), "x" + aluminium.ToString ());
+		GUI.DrawTexture (new Rect (110, 10, 40, 40), HydrogenLetter);
+		GUI.Label (new Rect (150, 30, 40, 40), "x" + hydrogen.ToString ());
+		GUI.DrawTexture (new Rect (170, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (230, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (290, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (350, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (410, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (470, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (520, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (580, 10, 40, 40), HydrogenLetter);
+
+		GUI.DrawTexture (new Rect (640, 10, 40, 40), AluminiumLetter);
+		GUI.DrawTexture (new Rect (700, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (760, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (820, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (880, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (940, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (1000, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (1060, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (1120, 10, 40, 40), HydrogenLetter);
+		GUI.DrawTexture (new Rect (1180, 10, 40, 40), HydrogenLetter);
+		GUI.Label (new Rect (1220, 30, 40, 40), "x" + hydrogen.ToString ());
+
+	
 
 		/*	if (level == 3 && nitrogen < 2) {
 				GUI.skin.label.fontSize = 30;
@@ -131,7 +206,7 @@ public class GlobalOpeningScript : MonoBehaviour {
 		//Debug.Log ("Collect");
 
 		//return to opening world
-		Application.LoadLevel("Opening_world");
+		//Application.LoadLevel("Opening_world");
 	}
 	 
 		
