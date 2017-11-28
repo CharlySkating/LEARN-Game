@@ -8,6 +8,7 @@ public class DraggingElectrons : MonoBehaviour {
 	float distance = 10;
 	public bool dragBond1 = true;
 	public float posElecDist;
+	public bool dragBondAgain = false;
 
 
 	void Start(){
@@ -45,6 +46,11 @@ public class DraggingElectrons : MonoBehaviour {
 					if (targetElements [j].GetComponent<bonding> ().boolPositions [i] == false) {
 						transform.position = targetElements [j].GetComponent<bonding> ().possiblePositions [i];
 						dragBond1 = false;
+						if (j == 0 && i == 2) {
+							//dragBondAgain = true;
+							this.name = "MoveableElectron";
+
+						}
 						targetElements [j].GetComponent<bonding> ().boolPositions [i] = true;
 						targetElements [j].GetComponent<bonding> ().countPositionsFilled++;
 						return;

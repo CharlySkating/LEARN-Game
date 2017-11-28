@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class IonicBonding : MonoBehaviour {
 	public LineRenderer lineList;
+	public LineRenderer arrow1;
+	public LineRenderer arrow2;
 	public bool drawLine = false;
 	public bool lineDrawn;
 	public bool rightAnswer;
 	public int level;
 	public Vector3 endPoint;
 	public Vector3 startPosition;
+	public Vector3 arrowPoint;
+	public Vector3 arrowEnd;
+	public Vector3 arrowEnd2;
 	public GameObject gameObj1;
+	public GameObject arrowLine1;
+	public GameObject arrowLine2;
 	public GameObject player;
 	public int linesDrawn;
 	public float distanceS;
@@ -29,6 +36,7 @@ public class IonicBonding : MonoBehaviour {
 	public GameObject element;
 	public GameObject element2;
 	public int[] arrayLevel4;
+	public GameObject dragElectron;
 
 	public bool bond1 = false;
 
@@ -36,7 +44,6 @@ public class IonicBonding : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		//Debug.Log(player.GetComponent<PlayerMOvement> ().level);
 		linesDrawn = 0;
 
 		Control = GameObject.Find ("MainObject");
@@ -46,6 +53,17 @@ public class IonicBonding : MonoBehaviour {
 		lineList.SetVertexCount (2);
 		lineList.SetWidth (0.1f, 0.1f);
 
+		//drawing arrow lines
+		arrowLine1 = new GameObject("arrow1");
+		arrow1 = arrowLine1.AddComponent<LineRenderer> ();
+		arrow1.SetVertexCount (2);
+		arrow1.SetWidth (0.1f, 0.1f);
+
+		arrowLine2 = new GameObject("arrow2");
+		arrow2 = arrowLine2.AddComponent<LineRenderer> ();
+		arrow2.SetVertexCount (2);
+		arrow2.SetWidth (0.1f, 0.1f);
+
 		drawLine = true;
 		lineDrawn = false;
 		rightAnswer = false;
@@ -54,18 +72,21 @@ public class IonicBonding : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		drawLine = true;
+		GameObject elementCOunt = GameObject.Find ("GameObject");
+		if (GameObject.Find ("MoveableElectron")!=null && elementCOunt.GetComponent<HintScript>().count == 2)  {
 
-		//targetElements [j].GetComponent<bonding> ().countPositionsFilled++;
-		for (int i = 0; i < targetElements.Length; i++) {
-			//Debug.Log (targetElements [i].GetComponent<bonding> ().countPositionsFilled);
-			if (targetElements [i].GetComponent<bonding> ().possiblePositions.Length != targetElements [i].GetComponent<bonding> ().countPositionsFilled) {
-				drawLine = false;
+			drawLine = true;
+
+		} else {
+			for (int i = 0; i < targetElements.Length; i++) {
+			
+				if (targetElements [i].GetComponent<bonding> ().possiblePositions.Length != targetElements [i].GetComponent<bonding> ().countPositionsFilled) {
+					drawLine = false;
+				}
 			}
 		}
 
 		if (drawLine){// & (Control.GetComponent<GlobalOpeningScript>().level ==4) ) {
-			//Debug.Log ("hi we are here level1");
-			//Application.LoadLevel ("level1");
 			drawLevel4 ();
 		}
 
@@ -81,12 +102,20 @@ public class IonicBonding : MonoBehaviour {
 
 				linesDrawn = 0;
 				bond1 = false;
-				Control.GetComponent<GlobalOpeningScript> ().level++;
-				Control.GetComponent<GlobalOpeningScript> ().hydrogen-=2;
-				Control.GetComponent<GlobalOpeningScript> ().whichLevelDisplay ();
+				//Control.GetComponent<GlobalOpeningScript> ().level++;
+				//Control.GetComponent<GlobalOpeningScript> ().hydrogen-=2;
+				//Control.GetComponent<GlobalOpeningScript> ().whichLevelDisplay ();
 			}
 
 		}
+	}
+
+	bool checkStartOfLine(Vector3 startPosition)
+	{
+		float possibleDistanceTemp = Vector2.Distance (startPosition, targetElement.GetComponent<bonding> ().possiblePositions [2]);
+		if (possibleDistanceTemp < 0.25) {
+			return true;
+		} return false;
 	}
 		
 
@@ -108,11 +137,42 @@ public class IonicBonding : MonoBehaviour {
 			currentLines.SetPosition (0, startPosition);
 			currentLines.SetPosition (1, endPoint);
 			mDown = true;
+			float offset = 0.3f;
+			arrowPoint = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+
+			arrow1.material = mat3;
+			arrowEnd = new Vector3 (arrowPoint.x - offset, arrowPoint.y - offset, 8);
+			arrow1.SetPosition (0, endPoint);
+			arrow1.SetPosition (1, arrowEnd);
+
+			arrow2.material = mat3;
+			arrowEnd2 = new Vector3 (arrowPoint.x - offset, arrowPoint.y + offset, 8);
+			arrow2.SetPosition (0, endPoint);
+			arrow2.SetPosition (1, arrowEnd2);
+			 Debug.Log ("positions 7" + targetElement1.GetComponent<bonding> ().boolPositions [7]);
+			Debug.Log ("mDown" + mDown);
+			if (checkStartOfLine (startPosition) == true) {
+				//dragElectron.GetComponent<DraggingElectrons> ().dragBond1 = true;
+
+				Debug.Log ("we are correct start");
+				GameObject specialElectron = GameObject.Find ("MoveableElectron");
+				Debug.Log (specialElectron.transform.position);
+				specialElectron.GetComponent<DraggingElectrons> ().dragBond1 = true;
+				targetElement1.GetComponent<bonding> ().boolPositions [7] = false;
+				//targetElements [1].GetComponent<bonding> ().countPositionsFilled--;
+				//Debug.Log (targetElements [1].GetComponent<bonding> ().countPositionsFilled);
+
+
+
+			}
 
 		}
 
 
 		if (Input.GetMouseButtonUp (0) && mDown ==true) {
+			
+			//targetElement1.GetComponent<bonding> ().boolPositions [7] = true;
+			//targetElements [1].GetComponent<bonding> ().countPositionsFilled++;
 			endPoint = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			endPoint.z = 8;
 			lineDrawn = true;
@@ -121,6 +181,7 @@ public class IonicBonding : MonoBehaviour {
 		}
 
 		if (lineDrawn) {
+			Debug.Log ("HELLOOOOOOO");
 			bool leftToRight = true;
 			drawLine = false;
 			currentLines.SetPosition (0, startPosition);
@@ -132,7 +193,7 @@ public class IonicBonding : MonoBehaviour {
 			for (int i = 0; i < 8; i++) {
 				//Debug.Log (s.x);
 				//check distance between startPosition and possible positions
-				if (s.x > 0) {
+				/*if (s.x > 0) {
 					leftToRight = false;
 					//Debug.Log ("In first condition");
 					possibleDistance = Vector2.Distance (startPosition, targetElement1.GetComponent<bonding> ().possiblePositions [i]);
@@ -155,28 +216,29 @@ public class IonicBonding : MonoBehaviour {
 						}
 						break;
 					}
-				} else  {
+				}*/ //else  {
 					//Debug.Log ("In second condition");
 					leftToRight = true;
 					possibleDistance = Vector2.Distance (startPosition, targetElement.GetComponent<bonding> ().possiblePositions [i]);
 					if (possibleDistance < 0.25) {
 						pos1 = i;
-						if (Control.GetComponent<GlobalOpeningScript> ().level > 0   && pos1 == levelArray[0]) {
+						//if (Control.GetComponent<GlobalOpeningScript> ().level > 0   && pos1 == levelArray[0]) {
+					if(pos1 == levelArray[0]){	
 							pos2 = levelArray[1];
 							//bond2 = true;
 						}
-						if (Control.GetComponent<GlobalOpeningScript> ().level > 1 && pos1 == levelArray[2] ) {
+					/*	if (Control.GetComponent<GlobalOpeningScript> ().level > 1 && pos1 == levelArray[2] ) {
 							pos2 = levelArray[3];
 						//	bond3 = true;
 						}
 						if (Control.GetComponent<GlobalOpeningScript> ().level > 2 && bond1 == false && pos1 == levelArray[5] ) {
 							pos2 = levelArray[4];
 							bond1 = true;
-						}
+						}*/
 
 						break;
 					}
-				}
+				//}
 			}
 
 
@@ -189,11 +251,11 @@ public class IonicBonding : MonoBehaviour {
 
 				electronL = new Vector2 (targetElement.GetComponent<bonding> ().possiblePositions [pos1].x, targetElement.GetComponent<bonding> ().possiblePositions [pos1].y);
 				electronR = new Vector2 (targetElement1.GetComponent<bonding> ().possiblePositions [pos2].x, targetElement1.GetComponent<bonding> ().possiblePositions [pos2].y);
-			} else if (leftToRight == false) {
+			}/* else if (leftToRight == false) {
 				electronL = new Vector2 (targetElement1.GetComponent<bonding> ().possiblePositions [pos1].x, targetElement1.GetComponent<bonding> ().possiblePositions [pos1].y);
 				electronR = new Vector2 (targetElement.GetComponent<bonding> ().possiblePositions [pos2].x, targetElement.GetComponent<bonding> ().possiblePositions [pos2].y);
 
-			}
+			}*/
 			//if (s.x < e.x) {
 			distanceS = Vector2.Distance (s, electronL);
 			distanceE = Vector2.Distance (e, electronR);
@@ -205,12 +267,15 @@ public class IonicBonding : MonoBehaviour {
 			if (lineDrawn & (distanceS > 0.25 || distanceE > 0.25)) {
 				//draw a new one
 				currentLines.material = mat2;
+				arrow1.material = mat2;
+				arrow2.material = mat2;
 				drawLine = true;
 				lineDrawn = false;
 
 			}
 			//if right line is drawn
 			else if (lineDrawn & (distanceS < 0.25 || distanceE < 0.25)) {
+				Debug.Log ("HELLOOOOOOO RIGHT LINE");
 				drawLine = true;
 				if (leftToRight == true) {
 					PresetLine (currentLines, pos1, pos2);
@@ -228,7 +293,13 @@ public class IonicBonding : MonoBehaviour {
 	void PresetLine(LineRenderer finalLine, int loc1, int loc2) {
 		rightAnswer = true;
 		finalLine.material = mat1;
+		arrow1.material = mat1;
+		arrow2.material = mat1;
 		finalLine.SetPosition(0,targetElement.GetComponent<bonding> ().possiblePositions [loc1]);
 		finalLine.SetPosition(1,targetElement1.GetComponent<bonding> ().possiblePositions [loc2]);
+		arrow1.SetPosition (0, targetElement1.GetComponent<bonding> ().possiblePositions [loc2]);
+		arrow2.SetPosition (0, targetElement1.GetComponent<bonding> ().possiblePositions [loc2]);
+		arrow1.SetPosition(1, arrowEnd);
+		arrow2.SetPosition (1, arrowEnd2);
 	}
 }

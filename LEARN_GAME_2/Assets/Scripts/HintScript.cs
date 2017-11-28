@@ -11,6 +11,7 @@ public class HintScript : MonoBehaviour {
 	public Vector3[] positions2;
 	public Vector3 rotation;
 	public GameObject lines;
+	public int count;
 	//public Renderer rend[];
 
 
@@ -34,7 +35,7 @@ public class HintScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		int count =0;
+		 count =0;
 
 		for (int j = 0; j < 2; j++) {
 			if (targets [j].GetComponent<bonding> ().possiblePositions.Length == targets [j].GetComponent<bonding> ().countPositionsFilled) {
