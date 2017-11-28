@@ -6,6 +6,7 @@ public class DisplayElements : MonoBehaviour {
 
 	public GameObject[] elementsArray;
 	public GameObject[,] allElements;
+	public bool walk = true;
 	//public GameObject elementGenerated;
 	//public GameObject newElement;
 
@@ -21,10 +22,9 @@ public class DisplayElements : MonoBehaviour {
 			elementsArray = new GameObject[20];
 			elementsArray = Resources.LoadAll<GameObject> ("preFabs");
 			for (int i = 0; i < 20; i++) {
-
-				transform.position = new Vector3 (Random.Range (-50, 50), 0, Random.Range (-50, 50));
-				elementsArray [i] = Instantiate (elementsArray [i], transform.position, Quaternion.identity) as GameObject;
-				allElements [j, i] = elementsArray [i];
+					transform.position = new Vector3 (Random.Range (-50, 50), 0, Random.Range (-50, 50));
+					elementsArray [i] = Instantiate (elementsArray [i], transform.position, Quaternion.identity) as GameObject;
+					allElements [j, i] = elementsArray [i];
 			}
 		}
 	}

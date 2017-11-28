@@ -21,6 +21,7 @@ public class PlayerMOvement : MonoBehaviour {
 	public float RVDist;
 	public GameObject door;
 	public GameObject elementObjectArray;
+	public GameObject inventory;
 
 
 	void Awake(){
@@ -57,9 +58,14 @@ public class PlayerMOvement : MonoBehaviour {
 				Vector2 elementLoc = new Vector2 (globalElements[j,i].transform.position.x,globalElements[j,i].transform.position.z);
 				Vector2 PlayerLoc = new Vector2 (transform.position.x, transform.position.z);
 				elementPlayerDist = Vector2.Distance (elementLoc, PlayerLoc);
+					//Vector2 location = new Vector2 (0f, 0f);
 					if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Aluminium(Clone)") {
-						Destroy (globalElements [j, i]);
-						Control.GetComponent<GlobalOpeningScript> ().aluminium++;
+						//Destroy (globalElements [j, i]);
+						float step = 0.01f*Time.deltaTime;
+						//globalElements[j,i].transform.localScale -= new Vector3(0.5f,0.5f,0.5f);
+						globalElements[j,i].transform.position = Vector3.Lerp( inventory.transform.position,globalElements[j,i].transform.position,step);
+						//Destroy(globalElements[j,i]);
+						//Control.GetComponent<GlobalOpeningScript> ().aluminium++;
 					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Argon(Clone)") {
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().argon++;
