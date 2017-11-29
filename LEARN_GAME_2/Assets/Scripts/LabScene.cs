@@ -32,7 +32,7 @@ public class LabScene : MonoBehaviour {
 		if (cam.GetComponent<CameraFollow> ().playerMove == false) {
 			//lock player position and set to a specific location
 			Debug.Log("we don't move player");
-			transform.position = new Vector3(-3.6f,19.6f,17.59f);
+			transform.position = new Vector3(-3.6f,19.0f,17.17f);
 			transform.rotation = new Quaternion (0.0f, 180.0f, 0.0f, 0.0f);
  		}
 
