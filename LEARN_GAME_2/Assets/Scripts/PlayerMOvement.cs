@@ -23,8 +23,16 @@ public class PlayerMOvement : MonoBehaviour {
 	public GameObject elementObjectArray;
 	public GameObject inventory;
 
+    Animator charanimcontroller;
 
-	void Awake(){
+    // Use this for initialization
+    void Start()
+    {
+        charanimcontroller = gameObject.GetComponent<Animator>();
+
+    }
+
+    void Awake(){
 		Control = GameObject.Find ("MainObject");
 	}
 
@@ -34,9 +42,15 @@ public class PlayerMOvement : MonoBehaviour {
 		transform.Rotate(0, x, 0);
 
         transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward * 2, z);
-		//transform.Translate(0, 0, z);
+        //transform.Translate(0, 0, z);
 
-		playerPos = new Vector2 (transform.position.x, transform.position.z);
+        charanimcontroller.SetFloat("speed", Mathf.Abs(x + z));
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            charanimcontroller.SetTrigger("grab");
+        }
+
+        playerPos = new Vector2 (transform.position.x, transform.position.z);
 		RVPos = new Vector2 (door.transform.position.x, door.transform.position.z);
 		RVDist = Vector2.Distance (playerPos, RVPos);
 
