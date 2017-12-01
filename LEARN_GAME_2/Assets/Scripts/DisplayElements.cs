@@ -20,9 +20,13 @@ public class DisplayElements : MonoBehaviour {
 			
 
 			elementsArray = new GameObject[20];
-			elementsArray = Resources.LoadAll<GameObject> ("preFabs");
+			elementsArray = Resources.LoadAll<GameObject> ("prefabs");
 			for (int i = 0; i < 20; i++) {
-					transform.position = new Vector3 (Random.Range (-50, 50), 0, Random.Range (-50, 50));
+				if (i < 5 && level < 5) {
+					transform.position = new Vector3 (Random.Range (-30, 30), 0, Random.Range (-30, 30));
+				} else {
+					transform.position = new Vector3 (Random.Range (-125, 125), 0, Random.Range (-125, 125));
+				}
 					elementsArray [i] = Instantiate (elementsArray [i], transform.position, Quaternion.identity) as GameObject;
 					allElements [j, i] = elementsArray [i];
 			}

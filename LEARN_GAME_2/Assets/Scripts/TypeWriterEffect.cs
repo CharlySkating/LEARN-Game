@@ -10,6 +10,7 @@ public class TypeWriterEffect : MonoBehaviour {
 	public string[] texts;
 	public string[] specificTexts;
 	private string currentText = "";
+	public int speechCount = 0;
 	// Use this for initialization
 	void Start () {
 		texts = new string[45];
@@ -99,70 +100,102 @@ public class TypeWriterEffect : MonoBehaviour {
 	
 	IEnumerator ShowText() {
 		//conditions and which texts get displayed
-		/*if (startGame == true) {
+		/*if (startGame == true && speechCount == 0) {
 			specificTexts = new string[] {texts[0],texts[1],texts[2]};
-		} if (wKey == true && sKey == true) {
+			speechCount++;
+		} if (wKey == true && sKey == true && speechCount == 1) {
 			specificTexts = new string[] { texts [3] };
-		} if (aKey = true && dKey == true) {
+			speechCount++;
+		} if (aKey = true && dKey == true && speechCount == 1) {
 			specificTexts = new string[] { texts [4], texts [5] };
-		} if (glasses == true) {
+			speechCount++;
+		} if (glasses == true && speechCount == 1) {
 			specificTexts = new string[] { texts [6], texts[7] };
-		} if (loadWorld == true && level == 1) {
+			speechCount++;
+		} if (loadWorld == true && level == 1 && speechCount == 1) {
 			specificTexts = new string[] { texts [8], texts [9] };
-		} if (hydrogen == 1) {
+			speechCount++;
+		} if (hydrogen == 1 && speechCount == 1) {
 			specificTexts = new string[] { texts [10] };
-		} if (hydrogen == 2) {
+			speechCount++;
+		} if (hydrogen == 2 && speechCount == 1) {
 			specificTexts = new string[] { texts [11] };
-		} if (RVprox == 5) {
+			speechCount++;
+		} if (RVprox == 5 && speechCount == 1) {
 			specificTexts = new string[] { texts [12] };
-		} if (enterLab == true && level ==1) {
-			specificTexts = new string[] {texts[13]};
-		} if (level == 1) {
+			speechCount++;
+		} if (enterLab == true && level ==1 && speechCount == 1) {
+			specificTexts = new string[] { texts[13] };
+			speechCount++;
+		} if (level == 1 && speechCount == 1) {
 			specificTexts = new string[] { texts [14] };
-		} if (level == 1 && drawLine == true) {
+			speechCount++;
+		} if (level == 1 && drawLine == true && speechCount == 1) {
 			specificTexts = new string[] { texts [15] };
-		} if (hydroComplete == true) {
+			speechCount++;
+		} if (hydroComplete == true && speechCount == 1) {
 			specificTexts = new string[] { texts [16] };
-		} if (enterLab == true && hydroComplete == true) {
+			speechCount++;
+		} if (enterLab == true && hydroComplete == true && speechCount == 1) {
 			specificTexts = new string[] { texts [17] };
-		} if (loadWorld == true && level == 2) {
+			speechCount++;
+		} if (loadWorld == true && level == 2 && speechCount == 1) {
 			specificTexts = new string[] { texts [18], texts [19] };
-		} if (enterLab == true && level == 2) {
+			speechCount++;
+		} if (enterLab == true && level == 2 && speechCount == 1) {
 			specificTexts =  new string[] { texts[20]};
-		} if (level == 2) {
+			speechCount++;
+		} if (level == 2  && speechCount == 1) {
 			specificTexts = new string[] { texts [21] };
-		} if (level == 2 && drawLine == true) {
+			speechCount++;
+		} if (level == 2 && drawLine == true  && speechCount == 1) {
 			specificTexts = new string[] { texts [22] };
-		} if (oxyComplete == true) {
+			speechCount++;
+		} if (oxyComplete == true  && speechCount == 1) {
 			specificTexts = new string[] { texts [23] };
-		} if (oxyComplete == true && enterLab == true) {
+			speechCount++;
+		} if (oxyComplete == true && enterLab == true && speechCount == 1) {
 			specificTexts = new string[] { texts [24], texts [25], texts[26] };
-		} if (loadWorld == true && level == 3) {
+			speechCount++;
+		} if (loadWorld == true && level == 3  && speechCount == 1) {
 			specificTexts = new string[] { texts [27] };
-		} if (nitrogen == 1) {
+			speechCount++;
+		} if (nitrogen == 1 && speechCount == 1) {
 			specificTexts = new string[] { texts [28] };
-		} if (nitrogen == 2) {
+			speechCount++;
+		} if (nitrogen == 2 && speechCount == 1) {
 			specificTexts = new string[] { texts [29] };
-		} if (enterLab == true && level == 3) {
+			speechCount++;
+		} if (enterLab == true && level == 3 && speechCount == 1) {
 			specificTexts = new string[] { texts [30] };
-		} if (level == 3) {
+			speechCount++;
+		} if (level == 3 && speechCount == 1) {
 			specificTexts = new string[] { texts [31] };
-		} if (level == 3 && nitroComplete) {
+			speechCount++;
+		} if (level == 3 && nitroComplete && speechCount == 1) {
 			specificTexts = new string[] { texts [32] };
-		} if (enterLab == true && level == 4) {
+			speechCount++;
+		} if (enterLab == true && level == 4 && speechCount == 1) {
 			specificTexts = new string[] { texts [33], texts [34], texts [35] };
-		} if (loadWorld == true && level == 4) {
+			speechCount++;
+		} if (loadWorld == true && level == 4 && speechCount == 1) {
 			specificTexts = new string[] { texts [36] };
-		} if (sodium == 1) {
+			speechCount++;
+		} if (sodium == 1 && speechCount == 1) {
 			specificTexts = new string[] { texts [37], texts [38] };
-		} if (chlorine == 1) {
+			speechCount++;
+		} if (chlorine == 1 && speechCount == 1) {
 			specificTexts = new string[] { texts [39] };
-		} if (level == 4) {
+			speechCount++;
+		} if (level == 4 && speechCount == 1) {
 			specificTexts = new string[] { texts [40] };
-		} if (level == 4 && drawLine == true) {
+			speechCount++;
+		} if (level == 4 && drawLine == true && speechCount == 1) {
 			specificTexts = new string[] { texts [41] };
-		} if (sodiChloComplete == true) {
+			speechCount++;
+		} if (sodiChloComplete == true && speechCount == 1) {
 			specificTexts = new string[] { texts [42], texts [43] };
+			speechCount++;
 		} else {
 			specificTexts = new string[] { texts [44] };
 		}*/
