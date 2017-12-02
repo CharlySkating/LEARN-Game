@@ -68,10 +68,20 @@ public class GlobalOpeningScript : MonoBehaviour {
 	public Texture CalciumImage;
 
 	public int level = 0;
-	public bool level1;
+	/*public bool level1;
 	public bool level2;
-	public bool level3;
+	public bool level3;*/
 	public bool reload = true;
+
+	public int speechCount = 0;
+	public bool startGame;
+	public bool wKey = false;
+	public bool sKey = false;
+	public bool dKey = false;
+	public bool aKey = false;
+	public bool glasses = false;
+	public bool loadWorld = false;
+	public bool RVprox = false;
 
 
 
@@ -79,6 +89,7 @@ public class GlobalOpeningScript : MonoBehaviour {
 	// Use this for ielnitialization
 	void Start () {
 		DontDestroyOnLoad (transform.gameObject);
+		startGame = true;
 		whichLevelDisplay ();
 
 	}
@@ -91,11 +102,32 @@ public class GlobalOpeningScript : MonoBehaviour {
 			Debug.Log ("B key was hit");
 			whichLevelDisplay ();
 		}
-		if (Input.GetKeyDown (KeyCode.W)) {
+		/*if (Input.GetKeyDown (KeyCode.W)) {
 			//return to world
 			Debug.Log("THis should work");
 			Application.LoadLevel("Opening_world");
 			//reload = true;
+		}*/
+		if (Input.GetKeyUp (KeyCode.W)) {
+			wKey = true;
+		}
+		if (Input.GetKeyUp (KeyCode.S)) {
+			sKey = true;
+		}
+		if (Input.GetKeyUp (KeyCode.A)) {
+			aKey = true;
+		}
+		if (Input.GetKeyUp (KeyCode.D)) {
+			dKey = true;
+		}
+		//to be replaced by another condition later
+		if (Input.GetKeyUp (KeyCode.G)) {
+			glasses = true;
+		}
+
+		if (Input.GetKeyDown (KeyCode.O)) {
+			loadWorld = true;
+			Application.LoadLevel ("Opening_World");
 		}
 
 		//if player is within this distance from door and hits key load level
@@ -112,33 +144,6 @@ public class GlobalOpeningScript : MonoBehaviour {
 		//if (reload == true) {
 		GUI.contentColor = Color.black;
 		GUI.skin.label.fontSize = 15;
-		/*GUI.Label (new Rect (10, 10, 100, 20), "Hydrogen " + hydrogen.ToString ());
-			GUI.Label (new Rect (10, 25, 100, 20), "Helium " + helium.ToString ());
-			GUI.Label (new Rect (10, 40, 100, 20), "Lithium " + lithium.ToString ());
-			GUI.Label (new Rect (10, 55, 100, 20), "Berylium " + berylium.ToString ());
-			GUI.Label (new Rect (10, 70, 100, 20), "Boron " + boron.ToString ());
-			GUI.Label (new Rect (10, 85, 100, 20), "Carbon " + carbon.ToString ());
-			GUI.Label (new Rect (10, 100, 100, 20), "Nitrogen " + nitrogen.ToString ());
-			GUI.Label (new Rect (10, 115, 100, 20), "Oxygen " + oxygen.ToString ());
-			GUI.Label (new Rect (10, 130, 100, 20), "Fluorine " + fluorine.ToString ());
-			GUI.Label (new Rect (10, 145, 100, 20), "Neon " + neon.ToString ());
-			GUI.Label (new Rect (10, 160, 100, 20), "Sodium " + sodium.ToString ());
-			GUI.Label (new Rect (10, 175, 100, 20), "Magnesium " + magnesium.ToString ());
-			GUI.Label (new Rect (10, 190, 100, 20), "Aluminium " + aluminium.ToString ());
-			GUI.Label (new Rect (10, 205, 100, 20), "Silicon " + silicon.ToString ());
-			GUI.Label (new Rect (10, 220, 100, 20), "Phosphorus " + phosphorus.ToString ());
-			GUI.Label (new Rect (10, 235, 100, 20), "Sulfur " + sulfur.ToString ());
-			GUI.Label (new Rect (10, 250, 100, 20), "Chlorine " + chlorine.ToString ());
-			GUI.Label (new Rect (10, 265, 100, 20), "Argon " + argon.ToString ());
-			GUI.Label (new Rect (10, 280, 100, 20), "Potassium " + potassium.ToString ());
-			GUI.Label (new Rect (10, 295, 100, 20), "Calcium " + calcium.ToString ());*/
-
-		//if (hovered over image){
-		//change to the other image
-
-		//} else if we are not hovering over image {
-		//display the first image
-		//}
 
 		GUI.DrawTexture (new Rect (50, 10, 40, 40), AluminiumLetter);
 		GUI.Label (new Rect (90, 30, 40, 40), "x" + aluminium.ToString ());
@@ -183,8 +188,8 @@ public class GlobalOpeningScript : MonoBehaviour {
 	}
 
 	public void whichLevelDisplay(){
-		if (level == 0) {
-			Application.LoadLevel ("Opening_world");
+		if (level == 0 && startGame == true) {
+			Application.LoadLevel ("ScienceLab");
 			level++;
 		}
 
@@ -195,14 +200,16 @@ public class GlobalOpeningScript : MonoBehaviour {
 			//hydrogen -=2;
 		} else if (level == 2 && oxygen >= 2) {
 			Application.LoadLevel ("level2_new");
-		   // oxygen -= 2;
+			// oxygen -= 2;
 
 		} else if (level == 3 && nitrogen >= 2) {
 			
 			Application.LoadLevel ("level3");
 			//nitrogen -= 2;
 
-	} else {
+			
+		}
+	else {
 		//Debug.Log ("Collect");
 
 		//return to opening world

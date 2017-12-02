@@ -5,15 +5,21 @@ using UnityEngine.UI;
 
 public class TypeWriterEffect : MonoBehaviour {
 
-	public float delay = 0.1f;
+	public GameObject GameControl;
+	public float delay = 0.0f;
 	public float messageDelay = 5.0f;
 	public string[] texts;
 	public string[] specificTexts;
 	private string currentText = "";
-	public int speechCount = 0;
+
+
+	void Awake() {
+		GameControl = GameObject.Find ("MainObject");
+
+	}
 	// Use this for initialization
 	void Start () {
-		texts = new string[45];
+		texts = new string[46];
 		texts [0]  = "Check, check...Test...";
 		texts [1]  = "Alright! Hey I'm Ico! I'm assigned to help you out right now. But before we start we need to make sure nothing got damaged when we shrank you down to size!";
 		texts [2]  = "Alright try moving forwards press W or the up arrow! And to move back press S!";
@@ -26,7 +32,8 @@ public class TypeWriterEffect : MonoBehaviour {
 		texts [6]  = "Alright, so soon you're going to go out into this sub atomic world. You'll see some elements there but don't be scared, they're harmless...relatively.  ANyways we need to go out and collect some elements in order to form some bonds!";
 		texts [7]  = "Approach the door at the end and hit O when you're ready to venture otuside!";
 		//triggered when world has been loaded and all values are set to 0 level = 0;
-		texts [8]  = "We have arrived, see it's impressive isn't it, a big old plane of elements.  ANyways we need to find some Hydrogen to start all this stuff.  It shouldn't be hard to find hydrogen is the most common element in the universe! Hydrogen should be easy enough to spot gaseous and floaty looks like a cloud of sorts also has one valence electron floating around it there should be some around the ship!";
+		texts [8]  = "We have arrived, see it's impressive isn't it, a big old plane of elements.  When you find an element you want hit the space bar to collect it.";
+		texts [45] = "ANyways we need to find some Hydrogen to start all this stuff.  It shouldn't be hard to find hydrogen is the most common element in the universe! Hydrogen should be easy enough to spot gaseous and floaty looks like a cloud of sorts also has one valence electron floating around it there should be some around the ship!";
 		texts [9]  = "Hey' there's one right there being all floaty and cloud like go and grab him!";
 		//when hydrogen variable is at 1
 		texts [10] = "Alright you got one! We will need one more!";
@@ -92,39 +99,49 @@ public class TypeWriterEffect : MonoBehaviour {
 		//display when conditions aren't met
 		texts [44] = "That's not what I told you to do!";
 		//what happens if we collect others besides those required and therefore meet requirements????
-		StartCoroutine (ShowText());
+		//StartCoroutine (ShowText());
 
 	}
 
-
-	
-	IEnumerator ShowText() {
+	void Update(){
 		//conditions and which texts get displayed
-		/*if (startGame == true && speechCount == 0) {
+		if (GameControl.GetComponent<GlobalOpeningScript> ().startGame == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 0) {
 			specificTexts = new string[] {texts[0],texts[1],texts[2]};
-			speechCount++;
-		} if (wKey == true && sKey == true && speechCount == 1) {
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		} if (GameControl.GetComponent<GlobalOpeningScript> ().wKey == true && GameControl.GetComponent<GlobalOpeningScript> ().sKey == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 1) {
 			specificTexts = new string[] { texts [3] };
-			speechCount++;
-		} if (aKey = true && dKey == true && speechCount == 1) {
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		} if (GameControl.GetComponent<GlobalOpeningScript> ().aKey = true && GameControl.GetComponent<GlobalOpeningScript> ().dKey == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 2) {
 			specificTexts = new string[] { texts [4], texts [5] };
-			speechCount++;
-		} if (glasses == true && speechCount == 1) {
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		}//temporarily hit g key 
+		if (GameControl.GetComponent<GlobalOpeningScript> ().glasses == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 3) {
+			Debug.Log ("Wrong place to come in in new world");
 			specificTexts = new string[] { texts [6], texts[7] };
-			speechCount++;
-		} if (loadWorld == true && level == 1 && speechCount == 1) {
-			specificTexts = new string[] { texts [8], texts [9] };
-			speechCount++;
-		} if (hydrogen == 1 && speechCount == 1) {
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+			Debug.Log ("Speech Count: " + GameControl.GetComponent<GlobalOpeningScript> ().speechCount);
+			StartCoroutine (ShowText ());
+
+		} if (GameControl.GetComponent<GlobalOpeningScript> ().loadWorld == true && GameControl.GetComponent<GlobalOpeningScript> ().level == 1 && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 4) {
+			Debug.Log ("Printing the text for element world");
+			specificTexts = new string[] { texts [8], texts[45], texts [9] };
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		} if (GameControl.GetComponent<GlobalOpeningScript> ().hydrogen == 1 && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 5) {
 			specificTexts = new string[] { texts [10] };
-			speechCount++;
-		} if (hydrogen == 2 && speechCount == 1) {
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		} if (GameControl.GetComponent<GlobalOpeningScript> ().hydrogen == 2 && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 6) {
 			specificTexts = new string[] { texts [11] };
-			speechCount++;
-		} if (RVprox == 5 && speechCount == 1) {
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		} if (GameControl.GetComponent<GlobalOpeningScript> ().RVprox == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 7) {
 			specificTexts = new string[] { texts [12] };
-			speechCount++;
-		} if (enterLab == true && level ==1 && speechCount == 1) {
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		} /*if (enterLab == true && level ==1 && speechCount == 1) {
 			specificTexts = new string[] { texts[13] };
 			speechCount++;
 		} if (level == 1 && speechCount == 1) {
@@ -199,7 +216,13 @@ public class TypeWriterEffect : MonoBehaviour {
 		} else {
 			specificTexts = new string[] { texts [44] };
 		}*/
-		specificTexts = new string[] {texts[5],texts[35],texts[23]};
+	}
+
+
+	
+	IEnumerator ShowText() {
+		 
+		//specificTexts = new string[] {texts[5],texts[35],texts[23]};
 		//start of displaying of text
 		for (int j = 0; j < specificTexts.Length; j++) {
 			for (int i = 0; i < specificTexts [j].Length; i++) {
@@ -208,14 +231,13 @@ public class TypeWriterEffect : MonoBehaviour {
 				this.GetComponent<Text> ().text = currentText;
 				yield return new WaitForSeconds (delay);
 			}
-			yield return new WaitForSeconds (5.0f);
+			yield return new WaitForSeconds (0.5f);
 		}
 		Debug.Log ("After yield");
 		// for (int i = 0; i < texts [1].Length; i++) {
 			//currentText = texts [1].Substring (0, i);
 			//this.GetComponent<Text> ().text = currentText;
 			//yield return new WaitForSeconds (delay);
-		//}
 		//}
 	}
 }

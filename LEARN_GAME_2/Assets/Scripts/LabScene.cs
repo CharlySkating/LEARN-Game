@@ -12,6 +12,7 @@ public class LabScene : MonoBehaviour {
 	public Vector2 playerPos;
 	public Vector2 vaultPos;
 	public GameObject cam;
+	public GameObject ControlObj;
 
     Animator charanimcontroller;
 
@@ -20,6 +21,10 @@ public class LabScene : MonoBehaviour {
         charanimcontroller = gameObject.GetComponent<Animator>();
 
     }
+
+	void Awake() {
+		ControlObj = GameObject.Find ("MainObject");
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -51,10 +56,12 @@ public class LabScene : MonoBehaviour {
 		doorDist = Vector2.Distance (playerPos, vaultPos);
 		//Debug.Log (doorDist);
 
-		if (Input.GetKeyDown (KeyCode.O) && doorDist < 5) {
-			Debug.Log ("We can open door");
-			Application.LoadLevel ("OpeningEmpty");
-		}
+		/*if (Input.GetKeyDown (KeyCode.O) && doorDist < 5) {
+			//Debug.Log ("We can open door");
+			ControlObj.GetComponent<GlobalOpeningScript> ().loadWorld = true;
+			Application.LoadLevel ("Opening_World");
+
+		}*/
 			
 	}
 
