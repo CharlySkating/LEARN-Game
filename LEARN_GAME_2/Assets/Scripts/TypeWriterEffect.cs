@@ -6,15 +6,20 @@ using UnityEngine.UI;
 public class TypeWriterEffect : MonoBehaviour {
 
 	public GameObject GameControl;
-	public float delay = 0.0f;
+	public float delay = -1000.0f;
 	public float messageDelay = 5.0f;
 	public string[] texts;
 	public string[] specificTexts;
 	private string currentText = "";
 
+	public AudioSource BotSource;
+
+
 
 	void Awake() {
 		GameControl = GameObject.Find ("MainObject");
+		BotSource = gameObject.AddComponent<AudioSource> ();
+
 
 	}
 	// Use this for initialization
@@ -221,7 +226,10 @@ public class TypeWriterEffect : MonoBehaviour {
 
 	
 	IEnumerator ShowText() {
-		 
+
+		BotSource.PlayOneShot((AudioClip)Resources.Load("AssistBot_Sound1"));
+		//audio.Play();
+
 		//specificTexts = new string[] {texts[5],texts[35],texts[23]};
 		//start of displaying of text
 		for (int j = 0; j < specificTexts.Length; j++) {
@@ -229,9 +237,9 @@ public class TypeWriterEffect : MonoBehaviour {
 				Debug.Log ("Hello we are typing");
 				currentText =specificTexts [j].Substring (0, i);
 				this.GetComponent<Text> ().text = currentText;
-				yield return new WaitForSeconds (delay);
+				yield return new WaitForSeconds (0);
 			}
-			yield return new WaitForSeconds (0.5f);
+			yield return new WaitForSeconds (3.0f);
 		}
 		Debug.Log ("After yield");
 		// for (int i = 0; i < texts [1].Length; i++) {
