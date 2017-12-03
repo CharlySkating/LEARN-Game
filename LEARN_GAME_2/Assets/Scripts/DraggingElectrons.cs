@@ -9,10 +9,13 @@ public class DraggingElectrons : MonoBehaviour {
 	public bool dragBond1 = true;
 	public float posElecDist;
 	public bool dragBondAgain = false;
-
+	public AudioSource RightSound;
+	public AudioSource WrongSound;
 
 	void Start(){
 		transform.position =  new Vector3 (-5.25f, -2.4f, 10.0f);
+		RightSound = gameObject.AddComponent<AudioSource> ();
+		WrongSound = gameObject.AddComponent<AudioSource> ();
 	}
 
 	void Update() {
@@ -50,12 +53,14 @@ public class DraggingElectrons : MonoBehaviour {
 							//dragBondAgain = true;
 							this.name = "MoveableElectron";
 						}
+						RightSound.PlayOneShot((AudioClip)Resources.Load("place an electron"));
 						targetElements [j].GetComponent<bonding> ().boolPositions [i] = true;
 						targetElements [j].GetComponent<bonding> ().countPositionsFilled++;
 						return;
 					} 
 					// position taken
 					else {
+						WrongSound.PlayOneShot((AudioClip)Resources.Load("Fail_Sound_1"));
 						transform.position = new Vector3 (-5.25f, -2.4f, 10.0f);
 						return;
 					}

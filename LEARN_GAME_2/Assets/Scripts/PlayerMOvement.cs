@@ -60,10 +60,11 @@ public class PlayerMOvement : MonoBehaviour {
 		RVPos = new Vector2 (door.transform.position.x, door.transform.position.z);
 		RVDist = Vector2.Distance (playerPos, RVPos);
 
-		if (RVDist < 3 && Input.GetKeyDown (KeyCode.O)) {
+		if (RVDist < 25 && Input.GetKeyDown (KeyCode.O)) {
 			Control.GetComponent<GlobalOpeningScript> ().RVprox = true;
-			Debug.Log ("We have entered RV");
-			Application.LoadLevel ("ScienceLab");
+			Control.GetComponent<GlobalOpeningScript> ().enterLab = true;
+				Application.LoadLevel ("ScienceLab");
+				
 		}
 
 	}
@@ -85,124 +86,124 @@ public class PlayerMOvement : MonoBehaviour {
 				elementPlayerDist = Vector2.Distance (elementLoc, PlayerLoc);
 
 					//Vector2 location = new Vector2 (0f, 0f);
-					if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Aluminium(Clone)") {
+					if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Aluminium(Clone)") {
 						Debug.Log ("we are colelcting elements");
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy(globalElements[j,i]);
 						Control.GetComponent<GlobalOpeningScript> ().aluminium++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Argon(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Argon(Clone)") {
 						Debug.Log ("we are colelcting elements");
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().argon++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Beryllium(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Beryllium(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().berylium++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Boron(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Boron(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().boron++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Calcium(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Calcium(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().calcium++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Carbon(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Carbon(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().carbon++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "5Chlorine(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "5Chlorine(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						//Control.GetComponent<GlobalOpeningScript> ().chlorine++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Florine(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Florine(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().fluorine++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Helium(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Helium(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().helium++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "1Hydrogen(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "1Hydrogen(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						Debug.Log ("we are colelcting elements - hydrogen");
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().hydrogen++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Lithium(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Lithium(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().lithium++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Magnesium(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Magnesium(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().magnesium++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Neon(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Neon(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().neon++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "3Nitrogen(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "3Nitrogen(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().nitrogen++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "2Oxygen(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "2Oxygen(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().oxygen++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Phospherous(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Phospherous(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().phosphorus++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Potassium(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Potassium(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().potassium++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "4Sodium(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "4Sodium(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().sodium++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Silicon(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Silicon(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
 						Control.GetComponent<GlobalOpeningScript> ().silicon++;
-					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 3 && globalElements [j, i].name == "Sulfur(Clone)") {
+					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Sulfur(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);

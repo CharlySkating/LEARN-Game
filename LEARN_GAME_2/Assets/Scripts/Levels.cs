@@ -42,10 +42,18 @@ public class Levels : MonoBehaviour {
 
 	bool inDrawing =false;
 
+	public AudioSource RightSource;
+	public AudioSource WrongSource;
+	public AudioSource YouDidItRightSource;
+
 	// Use this for initialization
 	void Awake () {
 		//Debug.Log(player.GetComponent<PlayerMOvement> ().level);
 		linesDrawn = 0;
+
+		RightSource = gameObject.AddComponent<AudioSource> ();
+		WrongSource = gameObject.AddComponent<AudioSource> ();
+		YouDidItRightSource = gameObject.AddComponent<AudioSource> ();
 
 		Control = GameObject.Find ("MainObject");
 
@@ -80,7 +88,7 @@ public class Levels : MonoBehaviour {
 			}
 		}
 			
-		/*if (drawLine & (Control.GetComponent<GlobalOpeningScript>().level ==1) ) {
+		if (drawLine & (Control.GetComponent<GlobalOpeningScript>().level ==1) ) {
 			//Debug.Log ("hi we are here level1");
 			//Application.LoadLevel ("level1");
 			drawLevel1 ();
@@ -88,15 +96,15 @@ public class Levels : MonoBehaviour {
 
 			//level++;
 		}
-		if (drawLine& (Control.GetComponent<GlobalOpeningScript>().level ==2)) {
+		if (drawLine & (Control.GetComponent<GlobalOpeningScript>().level ==2)) {
 			//Application.LoadLevel ("level2_new");
 			//linesDrawn = 0;
 			drawLevel2 ();
 			//player.GetComponent<PlayerMOvement> ().level++;
 			//player.GetComponent<PlayerMOvement>().oxygen -= 2;
 		//level++;
-		}*/
-		if (drawLine){// & (Control.GetComponent<GlobalOpeningScript>().level ==3)) {
+		}
+		if (drawLine & (Control.GetComponent<GlobalOpeningScript>().level ==3)) {
 			//Application.LoadLevel ("level3");
 			//linesDrawn = 0;
 			drawLevel3 ();
@@ -287,6 +295,7 @@ public class Levels : MonoBehaviour {
 			Debug.Log (distanceS);
 		
 			if (lineDrawn & (distanceS > 0.25 || distanceE > 0.25)) {
+				WrongSource.PlayOneShot((AudioClip)Resources.Load("Fail_Sound_1"));
 				//draw a new one
 				currentLines.material = mat2;
 				drawLine = true;
@@ -295,6 +304,7 @@ public class Levels : MonoBehaviour {
 			}
 		//if right line is drawn
 		else if (lineDrawn & (distanceS < 0.25 || distanceE < 0.25)) {
+				RightSource.PlayOneShot((AudioClip)Resources.Load("place an electron"));
 				drawLine = true;
 				if (leftToRight == true) {
 					PresetLine (currentLines, pos1, pos2);
@@ -310,6 +320,7 @@ public class Levels : MonoBehaviour {
 	}
 
 	void PresetLine(LineRenderer finalLine, int loc1, int loc2) {
+		//YouDidItRightSource.PlayOneShot((AudioClip)Resources.Load("AssistBot_Sound1"));
 		rightAnswer = true;
 		finalLine.material = mat1;
 		finalLine.SetPosition(0,targetElement.GetComponent<bonding> ().possiblePositions [loc1]);

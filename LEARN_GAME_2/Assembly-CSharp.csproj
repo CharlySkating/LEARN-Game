@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ElectronBondsDrag.cs" />
+     <Compile Include="Assets\Icons\Filled\inventoryBar.cs" />
      <Compile Include="Assets\Line_Drawing.cs" />
      <Compile Include="Assets\PlayerMove.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />

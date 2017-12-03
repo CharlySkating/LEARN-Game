@@ -74,7 +74,7 @@ public class GlobalOpeningScript : MonoBehaviour {
 	public bool reload = true;
 
 	public int speechCount = 0;
-	public bool startGame;
+	public bool startGame = true;
 	public bool wKey = false;
 	public bool sKey = false;
 	public bool dKey = false;
@@ -82,6 +82,9 @@ public class GlobalOpeningScript : MonoBehaviour {
 	public bool glasses = false;
 	public bool loadWorld = false;
 	public bool RVprox = false;
+	public bool enterLab = false;
+	public bool placeE = false;
+	public bool drawBonds = false;
 
 
 
@@ -108,26 +111,28 @@ public class GlobalOpeningScript : MonoBehaviour {
 			Application.LoadLevel("Opening_world");
 			//reload = true;
 		}*/
-		if (Input.GetKeyUp (KeyCode.W)) {
+		if (Input.GetKeyUp (KeyCode.W) || Input.GetKeyUp (KeyCode.UpArrow)) {
 			wKey = true;
 		}
-		if (Input.GetKeyUp (KeyCode.S)) {
+		if (Input.GetKeyUp (KeyCode.S) || Input.GetKeyUp (KeyCode.DownArrow)) {
 			sKey = true;
 		}
-		if (Input.GetKeyUp (KeyCode.A)) {
+		if (Input.GetKeyUp (KeyCode.A) || Input.GetKeyUp (KeyCode.LeftArrow)) {
 			aKey = true;
 		}
-		if (Input.GetKeyUp (KeyCode.D)) {
+		if (Input.GetKeyUp (KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow)) {
 			dKey = true;
 		}
-		//to be replaced by another condition later
-		if (Input.GetKeyUp (KeyCode.G)) {
-			glasses = true;
-		}
 
-		if (Input.GetKeyDown (KeyCode.O)) {
+		if (Input.GetKeyDown (KeyCode.Return) && loadWorld == false) {
 			loadWorld = true;
+			//enterLab = false;
 			Application.LoadLevel ("Opening_World");
+		}
+		if (Input.GetKeyDown (KeyCode.O) && enterLab == false) {
+			enterLab = true;
+			Application.LoadLevel ("ScienceLab");
+			level = 1;
 		}
 
 		//if player is within this distance from door and hits key load level
@@ -190,12 +195,13 @@ public class GlobalOpeningScript : MonoBehaviour {
 	public void whichLevelDisplay(){
 		if (level == 0 && startGame == true) {
 			Application.LoadLevel ("ScienceLab");
+			//startGame = false;
 			level++;
 		}
 
-		if (level == 1 && hydrogen >= 2) {
+	/*if (level == 1 && hydrogen >= 2) {
 			reload = false;
-			Debug.Log ("Display level1");
+			//Debug.Log ("Display level1");
 			Application.LoadLevel ("level1");
 			//hydrogen -=2;
 		} else if (level == 2 && oxygen >= 2) {
@@ -214,7 +220,7 @@ public class GlobalOpeningScript : MonoBehaviour {
 
 		//return to opening world
 		//Application.LoadLevel("Opening_world");
-	}
+	}*/
 	 
 		
 	}

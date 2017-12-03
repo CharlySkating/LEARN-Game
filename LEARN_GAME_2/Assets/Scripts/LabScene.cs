@@ -65,5 +65,11 @@ public class LabScene : MonoBehaviour {
 			
 	}
 
+	void OnCollisionEnter(Collision col){
+		if (col.gameObject.name == "SFG_LabEquipment_safetyGoggles") {
+			Destroy (col.gameObject);
+			ControlObj.GetComponent<GlobalOpeningScript> ().glasses = true;
+		}
+	}
 
 }

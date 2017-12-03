@@ -22,7 +22,7 @@ public class MouseHover : MonoBehaviour {
 	void OnMouseUp() {
 		if (isStart) {
 			Debug.Log ("We can start game");
-			Application.LoadLevel ("ScienceLab");
+			Application.LoadLevel ("OpeningEmpty");
 			GetComponent<Renderer>().material.color = Color.cyan;
 		}
 		if (isQuit) {
