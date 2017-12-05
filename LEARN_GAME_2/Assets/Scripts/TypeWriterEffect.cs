@@ -344,7 +344,7 @@ public class TypeWriterEffect : MonoBehaviour {
 	
 	IEnumerator ShowText() {
 		
-		BotSource.PlayOneShot((AudioClip)Resources.Load("AssistBot_Sound1"));
+		//BotSource.PlayOneShot((AudioClip)Resources.Load("AssistBot_Sound1"));
 		//audio.Play();
 		//textDone =false;
 		//specificTexts = new string[] {texts[5],texts[35],texts[23]};
