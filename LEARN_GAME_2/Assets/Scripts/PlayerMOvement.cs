@@ -129,7 +129,7 @@ public class PlayerMOvement : MonoBehaviour {
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
 						yield return new WaitForSeconds (0.5f);
 						Destroy (globalElements [j, i]);
-						//Control.GetComponent<GlobalOpeningScript> ().chlorine++;
+						Control.GetComponent<GlobalOpeningScript> ().chlorine++;
 					} if (Input.GetKeyDown (KeyCode.Space) && elementPlayerDist < 6 && globalElements [j, i].name == "Florine(Clone)") {
 						charanimcontroller.Play("Robot Grab");
 						elementSource.PlayOneShot((AudioClip)Resources.Load("Got_Item"));
