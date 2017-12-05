@@ -118,7 +118,6 @@ public class Levels : MonoBehaviour {
 
 	void drawLevel1() {
 		arrayLevel1 = new int[] { 2, 7 };
-
 		if (linesDrawn == 0) {
 			drawLines (lineList, arrayLevel1);
 			if (linesDrawn == 1) {
@@ -140,7 +139,6 @@ public class Levels : MonoBehaviour {
 
 	void drawLevel2() {
 		arrayLevel2 = new int[] { 2, 7, 4, 5 };
-
 		if (linesDrawn == 0) {
 			drawLines (lineList, arrayLevel2);
 		}else if (linesDrawn == 1) {
@@ -235,11 +233,11 @@ public class Levels : MonoBehaviour {
 					leftToRight = false;
 					//Debug.Log ("In first condition");
 					possibleDistance = Vector2.Distance (startPosition, targetElement1.GetComponent<bonding> ().possiblePositions [i]);
-
+					Debug.Log ("Level equals: " + Control.GetComponent<GlobalOpeningScript> ().level);
 					if (possibleDistance < 0.25) {
 						Debug.Log ("here");
 						pos1 = i;
-						if ((Control.GetComponent<GlobalOpeningScript> ().level > 2) && bond1 == false && pos1 == levelArray[4] ) {
+						if ((Control.GetComponent<GlobalOpeningScript> ().level > 2) && bond1 == false && pos1 == levelArray[4]) {
 							Debug.Log ("WE should not be in here");
 							pos2 = levelArray[5];
 							bond1 = true;
@@ -248,13 +246,14 @@ public class Levels : MonoBehaviour {
 							pos2 = levelArray[0];
 							bond2 = true;
 						}
-						if (Control.GetComponent<GlobalOpeningScript> ().level > 1 && bond3 == false && pos1 == levelArray[3] ) {
+						if (Control.GetComponent<GlobalOpeningScript> ().level > 1 && bond3 == false && pos1 == levelArray[3]) {
 							pos2 = levelArray[2];
 							bond3 = true;
 						}
 						break;
 					}
 				} else  {
+					Debug.Log ("Level equals: " + Control.GetComponent<GlobalOpeningScript> ().level);
 					//Debug.Log ("In second condition");
 					leftToRight = true;
 					possibleDistance = Vector2.Distance (startPosition, targetElement.GetComponent<bonding> ().possiblePositions [i]);
@@ -264,7 +263,7 @@ public class Levels : MonoBehaviour {
 							pos2 = levelArray[1];
 							bond2 = true;
 						}
-						if (Control.GetComponent<GlobalOpeningScript> ().level > 1 && bond3 == false && pos1 == levelArray[2] ) {
+						if (Control.GetComponent<GlobalOpeningScript> ().level > 1 && bond3 == false && pos1 == levelArray[2]) {
 							pos2 = levelArray[3];
 							bond3 = true;
 						}
