@@ -79,12 +79,13 @@ public class Levels : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		drawLine = true;
-
+		Control.GetComponent<GlobalOpeningScript> ().draw = true;
 		//targetElements [j].GetComponent<bonding> ().countPositionsFilled++;
 		for (int i = 0; i < targetElements.Length; i++) {
 			//Debug.Log (targetElements [i].GetComponent<bonding> ().countPositionsFilled);
 			if (targetElements [i].GetComponent<bonding> ().possiblePositions.Length != targetElements [i].GetComponent<bonding> ().countPositionsFilled) {
 				drawLine = false;
+				Control.GetComponent<GlobalOpeningScript> ().draw = false;
 			}
 		}
 			
@@ -117,7 +118,6 @@ public class Levels : MonoBehaviour {
 
 	void drawLevel1() {
 		arrayLevel1 = new int[] { 2, 7 };
-
 		if (linesDrawn == 0) {
 			drawLines (lineList, arrayLevel1);
 			if (linesDrawn == 1) {
@@ -129,7 +129,9 @@ public class Levels : MonoBehaviour {
 				bond3 = false;
 				Control.GetComponent<GlobalOpeningScript> ().level++;
 				Control.GetComponent<GlobalOpeningScript> ().hydrogen-=2;
+				//Application.LoadLevel ("ScienceLab");
 				Control.GetComponent<GlobalOpeningScript> ().whichLevelDisplay ();
+				Control.GetComponent<GlobalOpeningScript> ().hydroComplete = true;
 			}
 
 		}
@@ -137,7 +139,6 @@ public class Levels : MonoBehaviour {
 
 	void drawLevel2() {
 		arrayLevel2 = new int[] { 2, 7, 4, 5 };
-
 		if (linesDrawn == 0) {
 			drawLines (lineList, arrayLevel2);
 		}else if (linesDrawn == 1) {
@@ -150,10 +151,14 @@ public class Levels : MonoBehaviour {
 				bond3 = false;
 				Control.GetComponent<GlobalOpeningScript> ().level++;
 				Control.GetComponent<GlobalOpeningScript> ().oxygen-=2;
+				//Application.LoadLevel ("ScienceLab");
 				Control.GetComponent<GlobalOpeningScript> ().whichLevelDisplay ();
+
+
 
 			}
 		}
+		//Control.GetComponent<GlobalOpeningScript> ().oxyComplete = true;
 	}
 
 	void drawLevel3() {
@@ -173,7 +178,9 @@ public class Levels : MonoBehaviour {
 				bond3 = false;
 				Control.GetComponent<GlobalOpeningScript> ().level++;
 				Control.GetComponent<GlobalOpeningScript> ().nitrogen -= 2;
+				//Application.LoadLevel ("ScienceLab");
 				Control.GetComponent<GlobalOpeningScript> ().whichLevelDisplay ();
+				//Control.GetComponent<GlobalOpeningScript> ().nitroComplete = true;
 			}
 		}
 	}
@@ -186,6 +193,8 @@ public class Levels : MonoBehaviour {
 					startPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 					startPosition.z = 8;
 			      inDrawing =true;
+			Control.GetComponent<GlobalOpeningScript> ().drawBonds = true;
+				
 
 			}
 		// new state
@@ -224,11 +233,11 @@ public class Levels : MonoBehaviour {
 					leftToRight = false;
 					//Debug.Log ("In first condition");
 					possibleDistance = Vector2.Distance (startPosition, targetElement1.GetComponent<bonding> ().possiblePositions [i]);
-
+					Debug.Log ("Level equals: " + Control.GetComponent<GlobalOpeningScript> ().level);
 					if (possibleDistance < 0.25) {
 						Debug.Log ("here");
 						pos1 = i;
-						if ((Control.GetComponent<GlobalOpeningScript> ().level > 2) && bond1 == false && pos1 == levelArray[4] ) {
+						if ((Control.GetComponent<GlobalOpeningScript> ().level > 2) && bond1 == false && pos1 == levelArray[4]) {
 							Debug.Log ("WE should not be in here");
 							pos2 = levelArray[5];
 							bond1 = true;
@@ -237,13 +246,14 @@ public class Levels : MonoBehaviour {
 							pos2 = levelArray[0];
 							bond2 = true;
 						}
-						if (Control.GetComponent<GlobalOpeningScript> ().level > 1 && bond3 == false && pos1 == levelArray[3] ) {
+						if (Control.GetComponent<GlobalOpeningScript> ().level > 1 && bond3 == false && pos1 == levelArray[3]) {
 							pos2 = levelArray[2];
 							bond3 = true;
 						}
 						break;
 					}
 				} else  {
+					Debug.Log ("Level equals: " + Control.GetComponent<GlobalOpeningScript> ().level);
 					//Debug.Log ("In second condition");
 					leftToRight = true;
 					possibleDistance = Vector2.Distance (startPosition, targetElement.GetComponent<bonding> ().possiblePositions [i]);
@@ -253,7 +263,7 @@ public class Levels : MonoBehaviour {
 							pos2 = levelArray[1];
 							bond2 = true;
 						}
-						if (Control.GetComponent<GlobalOpeningScript> ().level > 1 && bond3 == false && pos1 == levelArray[2] ) {
+						if (Control.GetComponent<GlobalOpeningScript> ().level > 1 && bond3 == false && pos1 == levelArray[2]) {
 							pos2 = levelArray[3];
 							bond3 = true;
 						}
@@ -313,6 +323,14 @@ public class Levels : MonoBehaviour {
 				}
 				linesDrawn++;
 				lineDrawn = false;
+				if (linesDrawn == 2) {
+					Control.GetComponent<GlobalOpeningScript> ().oxyComplete = true;
+					//Control.GetComponent<GlobalOpeningScript> ().level = 3;
+				}
+				if (linesDrawn == 3) {
+					Control.GetComponent<GlobalOpeningScript> ().nitroComplete = true;
+					//linesDrawn = 0;
+				}
 			}
 		
 		//end of for loop
@@ -325,5 +343,6 @@ public class Levels : MonoBehaviour {
 		finalLine.material = mat1;
 		finalLine.SetPosition(0,targetElement.GetComponent<bonding> ().possiblePositions [loc1]);
 		finalLine.SetPosition(1,targetElement1.GetComponent<bonding> ().possiblePositions [loc2]);
+		Control.GetComponent<GlobalOpeningScript> ().drawBonds = false;
 	}
 }

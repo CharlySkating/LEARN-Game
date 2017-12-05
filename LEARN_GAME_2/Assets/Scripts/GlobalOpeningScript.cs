@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GlobalOpeningScript : MonoBehaviour {
 	
@@ -83,8 +85,18 @@ public class GlobalOpeningScript : MonoBehaviour {
 	public bool loadWorld = false;
 	public bool RVprox = false;
 	public bool enterLab = false;
-	public bool placeE = false;
+	//public bool placeE = false;
 	public bool drawBonds = false;
+	public bool inScienceLab = false;
+	public string sceneName;
+	public bool enterBondTable = false;
+	public Text[] test;
+	public bool hydroComplete;
+	public bool ionicComplete;
+	public bool oxyComplete;
+	public bool nitroComplete;
+	public bool level1Loaded;
+	public bool draw = false;
 
 
 
@@ -94,15 +106,37 @@ public class GlobalOpeningScript : MonoBehaviour {
 		DontDestroyOnLoad (transform.gameObject);
 		startGame = true;
 		whichLevelDisplay ();
+		/*Scene currentScene = SceneManager.GetActiveScene ();
+		sceneName = currentScene.name;*/
 
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
-
+		test[0].GetComponent<Text> ().text = hydrogen.ToString ();
+		test[1].GetComponent<Text> ().text = helium.ToString ();
+		test[2].GetComponent<Text> ().text = lithium.ToString ();
+		test[3].GetComponent<Text> ().text = berylium.ToString ();
+		test[4].GetComponent<Text> ().text = boron.ToString ();
+		test[5].GetComponent<Text> ().text = carbon.ToString ();
+		test[6].GetComponent<Text> ().text = nitrogen.ToString ();
+		test[7].GetComponent<Text> ().text = oxygen.ToString ();
+		test[8].GetComponent<Text> ().text = fluorine.ToString ();
+		test[9].GetComponent<Text> ().text = neon.ToString ();
+		test[10].GetComponent<Text> ().text = sodium.ToString ();
+		test[11].GetComponent<Text> ().text = magnesium.ToString ();
+		test[12].GetComponent<Text> ().text = aluminium.ToString ();
+		test[13].GetComponent<Text> ().text = silicon.ToString ();
+		test[14].GetComponent<Text> ().text = phosphorus.ToString ();
+		test[15].GetComponent<Text> ().text = sulfur.ToString ();
+		test[16].GetComponent<Text> ().text = chlorine.ToString ();
+		test[17].GetComponent<Text> ().text = argon.ToString ();
+		test[18].GetComponent<Text> ().text = potassium.ToString ();
+		test[19].GetComponent<Text> ().text = calcium.ToString ();
 		if (Input.GetKeyDown (KeyCode.B)) {
 			Debug.Log ("B key was hit");
+			//enterBondTable = true;
 			whichLevelDisplay ();
 		}
 		/*if (Input.GetKeyDown (KeyCode.W)) {
@@ -124,16 +158,27 @@ public class GlobalOpeningScript : MonoBehaviour {
 			dKey = true;
 		}
 
-		if (Input.GetKeyDown (KeyCode.Return) && loadWorld == false) {
-			loadWorld = true;
-			//enterLab = false;
-			Application.LoadLevel ("Opening_World");
+		if (Input.GetKeyDown (KeyCode.Return)) {
+			//Debug.Log (Application.loadedLevel);
+			if (Application.loadedLevel == 3){
+			Application.LoadLevel (2);
+				loadWorld = false;
+				enterBondTable = false;
+				//inScienceLab = false;
+				//Application.LoadLevel ("Opening_World");
+			} if (Application.loadedLevel == 2 && glasses == true) {
+				loadWorld = true;
+				Application.LoadLevel (3);
+				enterBondTable = false;
+				//inScienceLab = true;
+			}
+
 		}
-		if (Input.GetKeyDown (KeyCode.O) && enterLab == false) {
+		/*if (Input.GetKeyDown (KeyCode.O) && enterLab == false) {
 			enterLab = true;
 			Application.LoadLevel ("ScienceLab");
 			level = 1;
-		}
+		}*/
 
 		//if player is within this distance from door and hits key load level
 
@@ -147,33 +192,7 @@ public class GlobalOpeningScript : MonoBehaviour {
 		//if (counter == 2) {
 		//Debug.Log ("Time to make some bonds");
 		//if (reload == true) {
-		GUI.contentColor = Color.black;
-		GUI.skin.label.fontSize = 15;
-
-		GUI.DrawTexture (new Rect (50, 10, 40, 40), AluminiumLetter);
-		GUI.Label (new Rect (90, 30, 40, 40), "x" + aluminium.ToString ());
-		GUI.DrawTexture (new Rect (110, 10, 40, 40), HydrogenLetter);
-		GUI.Label (new Rect (150, 30, 40, 40), "x" + hydrogen.ToString ());
-		GUI.DrawTexture (new Rect (170, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (230, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (290, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (350, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (410, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (470, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (520, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (580, 10, 40, 40), HydrogenLetter);
-
-		GUI.DrawTexture (new Rect (640, 10, 40, 40), AluminiumLetter);
-		GUI.DrawTexture (new Rect (700, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (760, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (820, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (880, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (940, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (1000, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (1060, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (1120, 10, 40, 40), HydrogenLetter);
-		GUI.DrawTexture (new Rect (1180, 10, 40, 40), HydrogenLetter);
-		GUI.Label (new Rect (1220, 30, 40, 40), "x" + hydrogen.ToString ());
+	
 
 	
 
@@ -194,13 +213,14 @@ public class GlobalOpeningScript : MonoBehaviour {
 
 	public void whichLevelDisplay(){
 		if (level == 0 && startGame == true) {
+			inScienceLab = true;
 			Application.LoadLevel ("ScienceLab");
 			//startGame = false;
 			level++;
 		}
 
 	/*if (level == 1 && hydrogen >= 2) {
-			reload = false;
+			
 			//Debug.Log ("Display level1");
 			Application.LoadLevel ("level1");
 			//hydrogen -=2;

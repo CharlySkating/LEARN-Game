@@ -49,25 +49,41 @@ public class DraggingElectrons : MonoBehaviour {
 					if (targetElements [j].GetComponent<bonding> ().boolPositions [i] == false) {
 						transform.position = targetElements [j].GetComponent<bonding> ().possiblePositions [i];
 						dragBond1 = false;
-						if (j == 0 && i == 2) {
+						if (j == 0 && i == 2 && targetElements[j].name.Equals("Sodium") == true) {
 							//dragBondAgain = true;
 							this.name = "MoveableElectron";
 						}
-						RightSound.PlayOneShot((AudioClip)Resources.Load("place an electron"));
+						RightSound.PlayOneShot ((AudioClip)Resources.Load ("place an electron"));
 						targetElements [j].GetComponent<bonding> ().boolPositions [i] = true;
 						targetElements [j].GetComponent<bonding> ().countPositionsFilled++;
 						return;
 					} 
 					// position taken
 					else {
-						WrongSound.PlayOneShot((AudioClip)Resources.Load("Fail_Sound_1"));
+						WrongSound.PlayOneShot ((AudioClip)Resources.Load ("Fail_Sound_1"));
 						transform.position = new Vector3 (-5.25f, -2.4f, 10.0f);
 						return;
 					}
+
+					/*else if (this.name.Equals("MoveableElectron")==true) {
+						Debug.Log ("We are in the right spot");
+						WrongSound.PlayOneShot ((AudioClip)Resources.Load ("Fail_Sound_1"));
+						transform.position =new Vector3 (targetElements[0].GetComponent<bonding>().possiblePositions[2].x,targetElements[0].GetComponent<bonding>().possiblePositions[2].y,8);
+						return;
+					}*/
+						
+					}
 				} //if dist
 			}//for  
-		}//for
-		transform.position = new Vector3 (-5.25f, -2.4f, 10.0f);
+		//}//for
+		if (this.name.Equals ("MoveableElectron") == false) {
+			//WrongSound.PlayOneShot ((AudioClip)Resources.Load ("Fail_Sound_1"));
+			transform.position = new Vector3 (-5.25f, -2.4f, 10.0f);
+		} /*else {
+			transform.position =new Vector3 (targetElements[0].GetComponent<bonding>().possiblePositions[2].x,targetElements[0].GetComponent<bonding>().possiblePositions[2].y,8);
+
+			
+		}*/
 	} //function
 }
 

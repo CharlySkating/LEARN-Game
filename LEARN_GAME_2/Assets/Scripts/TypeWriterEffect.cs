@@ -14,8 +14,11 @@ public class TypeWriterEffect : MonoBehaviour {
 	//public int delay = 0;
 
 	public bool bullshit = true;
+	public bool textDone =false;
 
 	public AudioSource BotSource;
+
+
 
 
 
@@ -27,8 +30,52 @@ public class TypeWriterEffect : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		texts = new string[45];
-		texts [0]  = "Hi I'm Ico! ";
+		texts = new string[22];
+		texts [0] = "Hi I'm Ico! I am assigned to assist you. First, let’s learn how to navigate our world. To move forward, press W. To move back, press S.  To look left, Press A. To look right, press D."; 
+
+		texts [1] = "Turn around and you should find some safety glasses. Walk up to them and put them on. Soon you will be going out into the sub atomic world. "; 
+
+		texts [2] = "Approach the vault doors at the end of the lab. When you are ready, press ENTER to enter the sub atomic world. ";
+
+		texts [3] = "While in this world, you need to collect certain elements to form bonds. To collect an element press SPACE. ";
+
+		texts [4] = "Many bonds use Hydrogen, let’s go find some! We will need two Hydrogens to form our first bond. To collect an element press SPACE. ";
+
+		texts [5] = "Alright you got one! We will need one more. To see how many elements you have, press I to view your inventory. ";
+
+		texts [6] = "Awesome Job! You've now got two Hydrogen atoms. Let's head back to the lab and let's get to some Science! Press ENTER to enter the Science Lab. ";
+
+		texts [7] = "Now that you're back in the lab, we are going to make some bonds! Head over to the blue counter with the lab equipment and let's get started! Hit B to start bonding. ";
+
+		texts [8] = "Hydrogen is simple. They have one valence electron each. Start by placing the valence electron for each Hydrogen atom in the proper spot. ";
+
+		texts [9] = "Now that the valence electrons are in place, it's time to bond them. You are going to create a single covalent bond between the two Hydrogen atoms, so they will share their electrons. Use your MOUSE to draw the line between the valence electrons. ";
+
+		texts [10] = "Awesome Job! The Hydrogen atoms are now bonded with a single covalent bond. This now forms a Hydrogen molecule also known as H2! Let’s head back to the Science Lab to form more bonds. ";
+
+		texts [11] = "Now let’s make a little more complicated. I’ll need you to go out and get some Oxygen. Once you have two Oxygen, head back to the Science Lab. ";
+
+		texts [12] = "Now that you have two Oxygen, let’s head over to the bonding table to make some bonds. ";
+
+		texts [13] = "Each Oxygen atom has 6 valence electrons so you’re going to have to place them accordingly. Oxygen bonding follows what is known as the Octet rule where it’s happiest when it has 8 electrons in its outer shell. Since Oxygen only has 6 electrons, it will share two of its electrons. ";
+
+		texts [14] = "Excellent job! You have now fulfilled the Octet rule and created a double bond! Double bonds are tougher to break apart than just a regular single bond. Now we have an Oxygen molecule also known as O2, one of the most important things for humans to survive! ";
+
+		texts [15] = "So far, you’ve done a single and double bond. It's time to make the strongest type of bond. A TRIPLE BOND! Not many elements regularly form triple bonds; but, luckily Nitrogen forms triple bonds with itself. I will need you to go and find two Nitrogens. Once you have two Nitrogens, head back to the Science Lab. ";
+
+		texts [16] = "Triple bonds happen just like the double and single bonds; except, there are three of them. Place the electrons in the proper places and connect the electrons to form those covalent bonds! ";
+
+		texts [17] = "Now you’ve done every kind of bond that involves sharing... but now we need to cover the other type IONIC BONDS!! Ionic bonds form between metals and non-metals and the valence electrons are taken not shared... ";
+
+		texts [18] = "The bond we are going to make is Sodium Chloride commonly known as salt. We are going to need two different elements to do this Sodium and Chlorine. Once you have both, head back to the Science Lab. ";
+
+		texts [19] = "This will work in a similar way to the covalent bonds. Let’s start by placing the valence electrons. Remember Sodium has 1 and Chlorine has 7. ";
+
+		texts [20] = "Now that the valence electrons are in place we need to make the bond. Sodium gives up 1 electron to chlorine. Ionic bonds are often represented by arrows to show the giving up of electrons. Use your MOUSE to draw the arrow. ";
+
+		texts [21] = "That's it! You've now made each sort of bond there is. Now you can go through the other more complex elements based off of these types of bonds! ";
+		
+		/*texts [0]  = "Hi I'm Ico! ";
 		texts [1]  = "I'm assigned to help you out. ";
 		texts [2]  = "To move forward, press W. To move back, press S. ";
 		//triggered after hitting w with little delay
@@ -106,71 +153,137 @@ public class TypeWriterEffect : MonoBehaviour {
 		//display when conditions aren't met
 		texts [44] = "That's not what I told you to do... ";
 		//what happens if we collect others besides those required and therefore meet requirements????
-		//StartCoroutine (ShowText());
+		//StartCoroutine (ShowText());*/
 
 	}
 
 	void Update(){
 		//conditions and which texts get displayed
 		if (GameControl.GetComponent<GlobalOpeningScript> ().startGame == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 0) {
-			specificTexts = new string[] {texts[0],texts[1],texts[2]};
+			specificTexts = new string[] {texts[0], texts[1]};
 			StartCoroutine (ShowText ());
 			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
-		} if (GameControl.GetComponent<GlobalOpeningScript> ().wKey == true && GameControl.GetComponent<GlobalOpeningScript> ().sKey == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 1) {
-			specificTexts = new string[] { texts [3] };
+		}
+		if (GameControl.GetComponent<GlobalOpeningScript> ().glasses == true && GameControl.GetComponent<GlobalOpeningScript> ().loadWorld == false && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 1) {
+			specificTexts = new string[] { texts [2]};
 			StartCoroutine (ShowText ());
 			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
-		} if (GameControl.GetComponent<GlobalOpeningScript> ().aKey = true && GameControl.GetComponent<GlobalOpeningScript> ().dKey == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 2) {
-			specificTexts = new string[] { texts [4], texts [5] };
+		} 
+		//temporarily hit g key 
+		if (GameControl.GetComponent<GlobalOpeningScript> ().loadWorld == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 2) {
+			specificTexts = new string[] {texts [4]};
 			StartCoroutine (ShowText ());
 			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
-		}//temporarily hit g key 
-		if (GameControl.GetComponent<GlobalOpeningScript> ().glasses == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 3) {
-			Debug.Log ("Wrong place to come in in new world");
-			specificTexts = new string[] { texts [6], texts[7] };
+		} 
+		if (GameControl.GetComponent<GlobalOpeningScript> ().hydrogen == 1 && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 3) {
+			specificTexts = new string[] { texts [5] };
+			StartCoroutine (ShowText ());
 			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
-			Debug.Log ("Speech Count: " + GameControl.GetComponent<GlobalOpeningScript> ().speechCount);
+		}
+		if (GameControl.GetComponent<GlobalOpeningScript> ().hydrogen == 2 && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 4 ) {
+			specificTexts = new string[] { texts [6]};
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		}  
+		//if we are back in the lab
+		if (GameControl.GetComponent<GlobalOpeningScript> ().loadWorld == false && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 5) {
+			specificTexts = new string[] { texts[7] };
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		}
+		if (GameControl.GetComponent<GlobalOpeningScript> ().level == 1 && GameControl.GetComponent<GlobalOpeningScript> ().enterBondTable == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 6) {
+			specificTexts = new string[] { texts [8] };
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		} 
+		if (GameControl.GetComponent<GlobalOpeningScript> ().level == 1 && GameControl.GetComponent<GlobalOpeningScript> ().draw == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 7) {
+			specificTexts = new string[] { texts [9] };
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		}
+		if (GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 8 && GameControl.GetComponent<GlobalOpeningScript> ().hydroComplete == true) {
+			specificTexts = new string[] { texts [10] };
+			textDone =false;
 			StartCoroutine (ShowText ());
 
-		} if (GameControl.GetComponent<GlobalOpeningScript> ().loadWorld == true && GameControl.GetComponent<GlobalOpeningScript> ().level == 1 && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 4) {
-			//Debug.Log ("Printing the text for element world");
-			specificTexts = new string[] { texts [8], texts[37], texts [9] };
-			StartCoroutine (ShowText ());
-			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
-		} if (GameControl.GetComponent<GlobalOpeningScript> ().hydrogen == 1 && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 5) {
-			specificTexts = new string[] { texts [10] };
-			StartCoroutine (ShowText ());
-			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
-		} if (GameControl.GetComponent<GlobalOpeningScript> ().hydrogen == 2 && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 6 && bullshit ==false) {
-			specificTexts = new string[] { texts [11], texts[12] };
-			StartCoroutine (ShowText ());
-			//GameControl.GetComponent<GlobalOpeningScript> ().speechCount = 7;
-			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
 			Debug.Log (GameControl.GetComponent<GlobalOpeningScript> ().speechCount);
-			bullshit = true;
-		}  if (GameControl.GetComponent<GlobalOpeningScript> ().enterLab == true && GameControl.GetComponent<GlobalOpeningScript> ().level ==1 && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 7 && bullshit == true) {
+
+				GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+
+		} 
+		if (GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 9 && textDone ==true) {
+			Debug.Log ("we are loading science");
+			Application.LoadLevel ("ScienceLab");
+			specificTexts = new string[] { texts [11] };
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		}
+		if (GameControl.GetComponent<GlobalOpeningScript> ().oxygen == 2 && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 10 ) {
+			specificTexts = new string[] { texts [12]};
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		}
+		if (GameControl.GetComponent<GlobalOpeningScript> ().level == 2 && GameControl.GetComponent<GlobalOpeningScript> ().enterBondTable == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 11) {
 			specificTexts = new string[] { texts[13] };
+			textDone =false;
+			StartCoroutine (ShowText ());
 			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
-			GameControl.GetComponent<GlobalOpeningScript> ().placeE = true;
-		} if (GameControl.GetComponent<GlobalOpeningScript> ().level == 1 && GameControl.GetComponent<GlobalOpeningScript> ().placeE == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 8) {
+		}
+		if (GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 12 && textDone ==true && GameControl.GetComponent<GlobalOpeningScript> ().oxyComplete == true) {
 			specificTexts = new string[] { texts [14] };
+			textDone = false;
+			StartCoroutine (ShowText ());
 			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
-			GameControl.GetComponent<GlobalOpeningScript> ().drawBonds = true;
-		} /*if (GameControl.GetComponent<GlobalOpeningScript> ().level == 1 && GameControl.GetComponent<GlobalOpeningScript> ().drawBonds == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 9) {
-			specificTexts = new string[] { texts [15] };
+		}
+		if (GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 13 && textDone == true ) {
+			Application.LoadLevel ("ScienceLab");
+
+			specificTexts = new string[] { texts[15] };
+			textDone = false;
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().enterBondTable = false;
 			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
-		} if (hydroComplete == true && speechCount == 1) {
-			specificTexts = new string[] { texts [16] };
-			speechCount++;
-		} if (enterLab == true && hydroComplete == true && speechCount == 1) {
-			specificTexts = new string[] { texts [17] };
-			speechCount++;
-		} if (loadWorld == true && level == 2 && speechCount == 1) {
-			specificTexts = new string[] { texts [18], texts [19] };
-			speechCount++;
-		} if (enterLab == true && level == 2 && speechCount == 1) {
+		}
+		if (GameControl.GetComponent<GlobalOpeningScript> ().level == 3 && textDone ==true && GameControl.GetComponent<GlobalOpeningScript> ().enterBondTable == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 14) {
+			specificTexts = new string[] { texts[16] };
+			textDone = false;
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		}
+		if (GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 15  && textDone ==true && GameControl.GetComponent<GlobalOpeningScript> ().nitroComplete == true) {
+			Application.LoadLevel ("ScienceLab");
+			specificTexts = new string[] { texts[17], texts[18] };
+			textDone = false;
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().enterBondTable = false;
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+			//GameControl.GetComponent<GlobalOpeningScript> ().draw = false;
+		}
+		if (GameControl.GetComponent<GlobalOpeningScript> ().level == 4 && textDone ==true && GameControl.GetComponent<GlobalOpeningScript> ().enterBondTable == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 16) {
+			specificTexts = new string[] { texts[19] };
+			textDone = false;
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+			//GameControl.GetComponent<GlobalOpeningScript> ().draw = false;
+		}
+		if (GameControl.GetComponent<GlobalOpeningScript> ().level == 4  && textDone ==true && GameControl.GetComponent<GlobalOpeningScript> ().draw == true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 17) {
+			specificTexts = new string[] { texts [20] };
+			textDone = false;
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+		}
+		if (GameControl.GetComponent<GlobalOpeningScript> ().ionicComplete == true  && textDone ==true && GameControl.GetComponent<GlobalOpeningScript> ().speechCount == 18) {
+			specificTexts = new string[] { texts [21] };
+			textDone = false;
+			StartCoroutine (ShowText ());
+			GameControl.GetComponent<GlobalOpeningScript> ().speechCount++;
+			Application.LoadLevel ("ScienceLab");
+		} 
+
+
+		/*if (enterLab == true && level == 2 && speechCount == 1) {
 			specificTexts =  new string[] { texts[20]};
-			speechCount++;
+			speechCount++;Debug.Log ("After yield");
 		} if (level == 2  && speechCount == 1) {
 			specificTexts = new string[] { texts [21] };
 			speechCount++;
@@ -230,10 +343,10 @@ public class TypeWriterEffect : MonoBehaviour {
 
 	
 	IEnumerator ShowText() {
-
-		BotSource.PlayOneShot((AudioClip)Resources.Load("AssistBot_Sound1"));
+		
+		//BotSource.PlayOneShot((AudioClip)Resources.Load("AssistBot_Sound1"));
 		//audio.Play();
-
+		//textDone =false;
 		//specificTexts = new string[] {texts[5],texts[35],texts[23]};
 		//start of displaying of text
 		for (int j = 0; j < specificTexts.Length; j++) {
@@ -241,11 +354,21 @@ public class TypeWriterEffect : MonoBehaviour {
 				Debug.Log ("Hello we are typing");
 				currentText =specificTexts [j].Substring (0, i);
 				this.GetComponent<Text> ().text = currentText;
-				yield return new WaitForSeconds (0.0f);
+				yield return new WaitForSeconds (0.05f);
+				if (j == specificTexts.Length-1&& i == specificTexts [j].Length-1) {
+					textDone = true;
+					Debug.Log ("here");
+				}
 			}
+			//textDone = true;
 			yield return new WaitForSeconds (3.0f);
+
 		}
+
 		Debug.Log ("After yield");
+	
+
+
 		// for (int i = 0; i < texts [1].Length; i++) {
 			//currentText = texts [1].Substring (0, i);
 			//this.GetComponent<Text> ().text = currentText;

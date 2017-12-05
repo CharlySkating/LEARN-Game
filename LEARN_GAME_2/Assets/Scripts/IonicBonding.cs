@@ -38,6 +38,9 @@ public class IonicBonding : MonoBehaviour {
 	public int[] arrayLevel4;
 	public GameObject dragElectron;
 
+	public AudioSource RightSource;
+	public AudioSource WrongSource;
+
 	public bool bond1 = false;
 
 	bool inDrawing =false;
@@ -46,6 +49,8 @@ public class IonicBonding : MonoBehaviour {
 	void Awake () {
 		linesDrawn = 0;
 
+		RightSource = gameObject.AddComponent<AudioSource> ();
+		WrongSource = gameObject.AddComponent<AudioSource> ();
 		Control = GameObject.Find ("MainObject");
 
 		gameObj1 = new GameObject("Line1");
@@ -72,9 +77,10 @@ public class IonicBonding : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		drawLine = true;
+		Control.GetComponent<GlobalOpeningScript> ().draw = true;
 		GameObject elementCOunt = GameObject.Find ("GameObject");
 		if (GameObject.Find ("MoveableElectron")!=null && elementCOunt.GetComponent<HintScript>().count == 2)  {
-
+			Control.GetComponent<GlobalOpeningScript> ().draw = true;
 			drawLine = true;
 
 		} else {
@@ -82,6 +88,7 @@ public class IonicBonding : MonoBehaviour {
 			
 				if (targetElements [i].GetComponent<bonding> ().possiblePositions.Length != targetElements [i].GetComponent<bonding> ().countPositionsFilled) {
 					drawLine = false;
+					Control.GetComponent<GlobalOpeningScript> ().draw = false;
 				}
 			}
 		}
@@ -102,8 +109,11 @@ public class IonicBonding : MonoBehaviour {
 
 				linesDrawn = 0;
 				bond1 = false;
-				//Control.GetComponent<GlobalOpeningScript> ().level++;
-				//Control.GetComponent<GlobalOpeningScript> ().hydrogen-=2;
+				Control.GetComponent<GlobalOpeningScript> ().level++;
+				Control.GetComponent<GlobalOpeningScript> ().sodium-=1;
+				Control.GetComponent<GlobalOpeningScript> ().chlorine-=1;
+				//Application.LoadLevel ("ScienceLab");
+//				Control.GetComponent<GlobalOpeningScript> ().ionicComplete = true;
 				//Control.GetComponent<GlobalOpeningScript> ().whichLevelDisplay ();
 			}
 
@@ -127,6 +137,7 @@ public class IonicBonding : MonoBehaviour {
 			startPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			startPosition.z = 8;
 			inDrawing =true;
+			Control.GetComponent<GlobalOpeningScript> ().drawBonds = true;
 
 		}
 		// new state
@@ -266,6 +277,7 @@ public class IonicBonding : MonoBehaviour {
 
 			if (lineDrawn & (distanceS > 0.25 || distanceE > 0.25)) {
 				//draw a new one
+				WrongSource.PlayOneShot((AudioClip)Resources.Load("Fail_Sound_1"));
 				currentLines.material = mat2;
 				arrow1.material = mat2;
 				arrow2.material = mat2;
@@ -276,8 +288,11 @@ public class IonicBonding : MonoBehaviour {
 			}
 			//if right line is drawn
 			else if (lineDrawn & (distanceS < 0.25 || distanceE < 0.25)) {
+				RightSource.PlayOneShot ((AudioClip)Resources.Load ("place an electron"));
 				Debug.Log ("HELLOOOOOOO RIGHT LINE");
 				drawLine = true;
+				GameObject.Find ("MoveableElectron").transform.position =new Vector3 (targetElement1.GetComponent<bonding>().possiblePositions[7].x,targetElement1.GetComponent<bonding>().possiblePositions[7].y,8);
+
 				if (leftToRight == true) {
 					PresetLine (currentLines, pos1, pos2);
 				} else if (leftToRight == false) {
@@ -285,6 +300,9 @@ public class IonicBonding : MonoBehaviour {
 				}
 				linesDrawn++;
 				lineDrawn = false;
+				if (linesDrawn == 1) {
+					Control.GetComponent<GlobalOpeningScript> ().ionicComplete = true;
+				}
 			}
 
 			//end of for loop
@@ -302,5 +320,7 @@ public class IonicBonding : MonoBehaviour {
 		arrow2.SetPosition (0, targetElement1.GetComponent<bonding> ().possiblePositions [loc2]);
 		arrow1.SetPosition(1, arrowEnd);
 		arrow2.SetPosition (1, arrowEnd2);
+		Control.GetComponent<GlobalOpeningScript> ().drawBonds = false;
+
 	}
 }
