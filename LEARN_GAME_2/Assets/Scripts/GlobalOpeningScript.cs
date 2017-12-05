@@ -97,6 +97,7 @@ public class GlobalOpeningScript : MonoBehaviour {
 	public bool nitroComplete;
 	public bool level1Loaded;
 	public bool draw = false;
+	public bool glassesNow = false;
 
 
 

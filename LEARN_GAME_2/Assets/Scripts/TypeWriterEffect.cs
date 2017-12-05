@@ -47,7 +47,7 @@ public class TypeWriterEffect : MonoBehaviour {
 
 		texts [7] = "Now that you're back in the lab, we are going to make some bonds! Head over to the blue counter with the lab equipment and let's get started! Hit B to start bonding. ";
 
-		texts [8] = "Hydrogen is simple. They have one valence electron each. Start by placing the valence electron for each Hydrogen atom in the proper spot. ";
+		texts [8] = "Hydrogen is simple. They have one valence electron each. Start by placing the valence electron for each Hydrogen atom in the proper spot. Grab the electron at the bottom of the pan and drag it into place with the MOUSE. ";
 
 		texts [9] = "Now that the valence electrons are in place, it's time to bond them. You are going to create a single covalent bond between the two Hydrogen atoms, so they will share their electrons. Use your MOUSE to draw the line between the valence electrons. ";
 
@@ -69,7 +69,7 @@ public class TypeWriterEffect : MonoBehaviour {
 
 		texts [18] = "The bond we are going to make is Sodium Chloride commonly known as salt. We are going to need two different elements to do this Sodium and Chlorine. Once you have both, head back to the Science Lab. ";
 
-		texts [19] = "This will work in a similar way to the covalent bonds. Let’s start by placing the valence electrons. Remember Sodium has 1 and Chlorine has 7. ";
+		texts [19] = "This will work in a similar way to the covalent bonds. Let’s start by placing the valence electrons. Remember Sodium has 1 and Chlorine has 7. Colored electrons correspond to their respective elements. ";
 
 		texts [20] = "Now that the valence electrons are in place we need to make the bond. Sodium gives up 1 electron to chlorine. Ionic bonds are often represented by arrows to show the giving up of electrons. Use your MOUSE to draw the arrow. ";
 
@@ -357,6 +357,7 @@ public class TypeWriterEffect : MonoBehaviour {
 				yield return new WaitForSeconds (0.05f);
 				if (j == specificTexts.Length-1&& i == specificTexts [j].Length-1) {
 					textDone = true;
+					GameControl.GetComponent<GlobalOpeningScript> ().glassesNow = true;
 					Debug.Log ("here");
 				}
 			}

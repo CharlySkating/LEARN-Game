@@ -93,7 +93,7 @@ public class IonicBonding : MonoBehaviour {
 			}
 		}
 
-		if (drawLine){// & (Control.GetComponent<GlobalOpeningScript>().level ==4) ) {
+		if (drawLine & (Control.GetComponent<GlobalOpeningScript>().level ==4) ) {
 			drawLevel4 ();
 		}
 

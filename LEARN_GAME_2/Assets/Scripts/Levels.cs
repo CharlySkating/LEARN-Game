@@ -141,7 +141,9 @@ public class Levels : MonoBehaviour {
 		arrayLevel2 = new int[] { 2, 7, 4, 5 };
 		if (linesDrawn == 0) {
 			drawLines (lineList, arrayLevel2);
+
 		}else if (linesDrawn == 1) {
+			bond1 = true;
 			drawLines (lineList2, arrayLevel2);
 			if (linesDrawn == 2) {
 				
@@ -240,6 +242,7 @@ public class Levels : MonoBehaviour {
 						if ((Control.GetComponent<GlobalOpeningScript> ().level > 2) && bond1 == false && pos1 == levelArray[4]) {
 							Debug.Log ("WE should not be in here");
 							pos2 = levelArray[5];
+							Debug.Log ("why are we in here No");
 							bond1 = true;
 						}
 						if (Control.GetComponent<GlobalOpeningScript> ().level > 0 && bond2 == false && pos1 == levelArray[1] ) {
@@ -249,10 +252,11 @@ public class Levels : MonoBehaviour {
 						if (Control.GetComponent<GlobalOpeningScript> ().level > 1 && bond3 == false && pos1 == levelArray[3]) {
 							pos2 = levelArray[2];
 							bond3 = true;
+
 						}
 						break;
 					}
-				} else  {
+				} else {
 					Debug.Log ("Level equals: " + Control.GetComponent<GlobalOpeningScript> ().level);
 					//Debug.Log ("In second condition");
 					leftToRight = true;
@@ -269,6 +273,7 @@ public class Levels : MonoBehaviour {
 						}
 						if (Control.GetComponent<GlobalOpeningScript> ().level > 2 && bond1 == false && pos1 == levelArray[5] ) {
 							pos2 = levelArray[4];
+							Debug.Log ("Why are we here");
 							bond1 = true;
 						}
 

@@ -13,7 +13,11 @@ public class DraggingElectrons : MonoBehaviour {
 	public AudioSource WrongSound;
 
 	void Start(){
-		transform.position =  new Vector3 (-5.25f, -2.4f, 10.0f);
+		if (this.name == "SphereNA") {
+			transform.position = new Vector3 (-5.25f, -2.4f, 10.0f);
+		} else {
+			transform.position = new Vector3 (5.25f, -2.4f, 10.0f);
+		}
 		RightSound = gameObject.AddComponent<AudioSource> ();
 		WrongSound = gameObject.AddComponent<AudioSource> ();
 	}
@@ -61,7 +65,11 @@ public class DraggingElectrons : MonoBehaviour {
 					// position taken
 					else {
 						WrongSound.PlayOneShot ((AudioClip)Resources.Load ("Fail_Sound_1"));
-						transform.position = new Vector3 (-5.25f, -2.4f, 10.0f);
+						if (this.name == "SphereNA") {
+							transform.position = new Vector3 (-5.25f, -2.4f, 10.0f);
+						} else {
+							transform.position = new Vector3 (5.25f, -2.4f, 10.0f);
+						}
 						return;
 					}
 
@@ -78,8 +86,11 @@ public class DraggingElectrons : MonoBehaviour {
 		//}//for
 		if (this.name.Equals ("MoveableElectron") == false) {
 			//WrongSound.PlayOneShot ((AudioClip)Resources.Load ("Fail_Sound_1"));
+			transform.position = new Vector3 (5.25f, -2.4f, 10.0f);
+		} if (this.name.Equals ("SphereNA") == true) {
+			//WrongSound.PlayOneShot ((AudioClip)Resources.Load ("Fail_Sound_1"));
 			transform.position = new Vector3 (-5.25f, -2.4f, 10.0f);
-		} /*else {
+		}/*else {
 			transform.position =new Vector3 (targetElements[0].GetComponent<bonding>().possiblePositions[2].x,targetElements[0].GetComponent<bonding>().possiblePositions[2].y,8);
 
 			
