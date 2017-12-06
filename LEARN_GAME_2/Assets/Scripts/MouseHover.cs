@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//code modified from unity/documentation - Button.onCLick 
+//Retrieved from https://docs.unity3d.com/ScriptReference/UI.Button-onClick.html
+
+
 public class MouseHover : MonoBehaviour {
 
 	public bool isStart;

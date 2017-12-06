@@ -340,7 +340,9 @@ public class TypeWriterEffect : MonoBehaviour {
 		}*/
 	}
 
-
+	//code taken and modified from Unity 5 - Type Writer Effect Tutorial (Great for Dialogues)
+	//Creagines.(2015 Sept 7). Unity 5 - Type Writer Effect Tutorial (Great for Dialogues) [Video file]
+	//Retrieved from https://www.youtube.com/watch?v=1qbjmb_1hV4
 	
 	IEnumerator ShowText() {
 		

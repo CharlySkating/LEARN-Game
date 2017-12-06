@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//the following player movement came from the Unity tutorial "Player Character - Survival Shooter Tutorial"
+//Unity.(2014 October 14). Survival shooter tutorial - 2 of 10: Player character- Unity official tutorials(new)[Video file].
+//Retrieved from https://www.youtube.com/watch?v=R8O8Y6xP79w
+
 public class LabScene : MonoBehaviour {
 
 	public float rotationSpeed;

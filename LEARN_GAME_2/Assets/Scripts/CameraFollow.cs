@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//the following player movement came from the Unity tutorial "Camera Setup - Survival Shooter Tutorial"
-//Unity.(2014 October 14). Survival shooter tutorial - 3 of 10: Camera setup- Unity official tutorials(new)[Video file].
-//Retrieved from https://www.youtube.com/watch?v=xrmNFmS889I
+
 
 public class CameraFollow : MonoBehaviour {
 	public float charStatDist;

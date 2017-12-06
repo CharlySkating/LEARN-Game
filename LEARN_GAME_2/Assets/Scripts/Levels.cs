@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//code modified from theappguruz.com - Draw Line on Mouse move and detect line collision in Unity2D and Unity 3D
+//Patel, S. (2016, March 8). Draw Line on mouse move and detect line collision in unity 3D.
+//Retrieved from http://www.theappguruz.com/blog/draw-line-mouse-move-detect-line-collision-unity2d-unity3d 
+
 public class Levels : MonoBehaviour {
 	public LineRenderer lineList;
 	public LineRenderer lineList2;
